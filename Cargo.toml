@@ -5,8 +5,15 @@ description = "Catch slowest dependencies directly in your terminal"
 license = "MIT"
 repository = "https://github.com/Kayen0000/cargo-timings"
 homepage = "https://github.com/Kayen0000/cargo-timings"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 
 [dependencies]
 regex = "1.12.4"
+
+[package.metadata.docs.rs]
+all-features = true
+
+[[bin]]
+name = "cargo-timings"
+path = "src/main.rs"
