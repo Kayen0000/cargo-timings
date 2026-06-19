@@ -16,7 +16,7 @@ First, compile your Rust project using Cargo's built-in timing flag:
 cargo build --timings
 ```
 
-Then, run the tool inside your project directory to see the bottleneck summary:
+Then, run the tool inside your project directory:
 
 ```bash
 # Automatically finds the standard target html path and lists bottlenecks
