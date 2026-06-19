@@ -20,13 +20,13 @@ Then, run the tool inside your project directory:
 
 ```bash
 # Automatically finds the standard target html path and lists bottlenecks
-cargo-timings
+cargo timings
 
 # Limit output to the top 5 slowest dependencies
-cargo-timings --top 5
+cargo timings --top 5
 
 # Get granular metrics including frontend and codegen stages
-cargo-timings --detail extended
+cargo timings --detail extended
 ```
 
 Enjoy clean summary, without opening a browser:
