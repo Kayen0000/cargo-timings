@@ -5,7 +5,7 @@ description = "Catch slowest dependencies directly in your terminal"
 license = "MIT"
 repository = "https://github.com/Kayen0000/cargo-timings"
 homepage = "https://github.com/Kayen0000/cargo-timings"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2024"
 
 [dependencies]

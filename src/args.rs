@@ -33,7 +33,14 @@ pub enum Detail {
 }
 
 pub fn parse_args() -> Result<Config, String> {
-    let mut args = env::args().skip(1);
+    let args = env::args().collect::<Vec<String>>();
+
+    // cases:
+    // 0:cargo-timings 
+    // 0:cargo 1:timings
+    // 0:caller --- n:timings
+    let arg_start = args.iter().position(|a| a == "timings" || a == "cargo-timings" ).ok_or_else(|| format!("invalid arguments"))? + 1;
+    let mut args = args[arg_start..].into_iter();
 
     let mut help = false;
     let mut version = false;
