@@ -1,12 +1,18 @@
 # cargo-timings
 
-Minimal binary to view slowest dependencies in your Rust project without leaving terminal.
+Terminal-based visualizer for `cargo-timing.html` files, built entirely in Rust.
+
+[<img alt="crates.io" src="https://img.shields.io/crates/v/cargo-timings.svg?style=for-the-badge&color=fc8d61&logo=rust" height="20">](https://crates.io/crates/cargo-timings)
 
 ## Installation
 
 ```bash
+# Standard installation
 cargo install cargo-timings
-````
+
+# With tui interactive mode
+cargo install cargo-timings --features tui
+```
 
 ## Usage
 
@@ -22,25 +28,29 @@ Then, run the tool inside your project directory:
 # Automatically finds the standard target html path and lists bottlenecks
 cargo timings
 
-# Limit output to the top 5 slowest dependencies
-cargo timings --top 5
+# Find matching dependencies
+cargo timings --search "build-script"
 
 # Get granular metrics including frontend and codegen stages
 cargo timings --detail extended
+cargo timings --detail full
+
+# View in interactive mode
+cargo timings -i
 ```
 
 Enjoy clean summary, without opening a browser:
 
 ```bash
-TARGETS: ["cargo-timings 0.1.0 ( cargo-timings \"bin\")"]
-TOTAL TIME: 103.6s (1m 43.6s)
-UNIT.................................... TOTAL
-regex-automata v0.4.14                   50.4s
-regex-syntax v0.8.11                     48.3s
-aho-corasick v1.1.4                      38.3s
-regex v1.12.4                            10.1s
-memchr v2.8.2                            7.5s 
-cargo-timings v0.1.0 cargo-timings "bin" 7.0s
+TARGETS: ["cargo-timings 0.2.0 (lib)", "cargo-timings 0.2.0 ( cargo-timings \"bin\")"]
+TOTAL TIME: 215.1s
+UNIT.................. TOTAL
+clap_builder v4.6.0    50.9s
+scraper v0.27.0        31.7s
+syn v2.0.118           24.4s
+ratatui-widgets v0.3.2 22.4s
+ratatui-core v0.1.2    21.9s
 ```
 
-###### If ```cargo-timings``` optimized your workflow, consider dropping tip via [PayPal](https://paypal.me/dominikleszczynski0)
+## Support
+You can support this project via [PayPal](https://paypal.me/dominikleszczynski0)

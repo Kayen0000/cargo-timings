@@ -1,0 +1,9774 @@
+
+<html>
+<head>
+  <title>Cargo Build Timings — cargo-timings 1.0.0, cargo-timings 1.0.0</title>
+  <meta charset="utf-8">
+<style type="text/css">
+:root {
+  --error-text: #e80000;
+  --text: #000;
+  --background: #fff;
+  --h1-border-bottom: #c0c0c0;
+  --table-box-shadow: rgba(0, 0, 0, 0.1);
+  --table-th: #d5dde5;
+  --table-th-background: #1b1e24;
+  --table-th-border-bottom: #9ea7af;
+  --table-th-border-right: #343a45;
+  --table-tr-border-top: #c1c3d1;
+  --table-tr-border-bottom: #c1c3d1;
+  --table-tr-odd-background: #ebebeb;
+  --table-td-background: #ffffff;
+  --table-td-border-right: #C1C3D1;
+  --canvas-background: #f7f7f7;
+  --canvas-axes: #303030;
+  --canvas-grid: #e6e6e6;
+  --canvas-codegen: #aa95e8;
+  --canvas-link: #95e8aa;
+  --canvas-other: #e895aa;
+  --canvas-custom-build: #f0b165;
+  --canvas-not-custom-build: #95cce8;
+  --canvas-dep-line: #ddd;
+  --canvas-dep-line-highlighted: #000;
+  --canvas-cpu: rgba(250, 119, 0, 0.2);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --error-text: #e80000;
+    --text: #fff;
+    --background: #121212;
+    --h1-border-bottom: #444;
+    --table-box-shadow: rgba(255, 255, 255, 0.1);
+    --table-th: #a0a0a0;
+    --table-th-background: #2c2c2c;
+    --table-th-border-bottom: #555;
+    --table-th-border-right: #444;
+    --table-tr-border-top: #333;
+    --table-tr-border-bottom: #333;
+    --table-tr-odd-background: #1e1e1e;
+    --table-td-background: #262626;
+    --table-td-border-right: #333;
+    --canvas-background: #1a1a1a;
+    --canvas-axes: #b0b0b0;
+    --canvas-grid: #333;
+    --canvas-block: #aa95e8;
+    --canvas-custom-build: #f0b165;
+    --canvas-not-custom-build: #95cce8;
+    --canvas-dep-line: #444;
+    --canvas-dep-line-highlighted: #fff;
+    --canvas-cpu: rgba(250, 119, 0, 0.2);
+  }
+}
+
+html {
+  font-family: sans-serif;
+  color: var(--text);
+  background: var(--background);
+}
+
+.canvas-container {
+  position: relative;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.canvas-container.hidden {
+  display: none;
+}
+
+h1 {
+  border-bottom: 1px solid var(--h1-border-bottom);
+}
+
+.graph {
+  display: block;
+}
+
+.my-table {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-collapse: collapse;
+  box-shadow: 0 5px 10px var(--table-box-shadow);
+}
+
+.my-table th {
+  color: var(--table-th);
+  background: var(--table-th-background);
+  border-bottom: 4px solid var(--table-th-border-bottom);
+  border-right: 1px solid var(--table-th-border-right);
+  font-size: 18px;
+  font-weight: 100;
+  padding: 12px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.my-table th:first-child {
+  border-top-left-radius: 3px;
+}
+
+.my-table th:last-child {
+  border-top-right-radius: 3px;
+  border-right:none;
+}
+
+.my-table tr {
+  border-top: 1px solid var(--table-tr-border-top);
+  border-bottom: 1px solid var(--table-tr-border-bottom);
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.my-table tr:first-child {
+  border-top:none;
+}
+
+.my-table tr:last-child {
+  border-bottom:none;
+}
+
+.my-table tr:nth-child(odd) td {
+  background: var(--table-tr-odd-background);
+}
+
+.my-table tr:last-child td:first-child {
+  border-bottom-left-radius:3px;
+}
+
+.my-table tr:last-child td:last-child {
+  border-bottom-right-radius:3px;
+}
+
+.my-table td {
+  background: var(--table-td-background);
+  padding: 10px;
+  text-align: left;
+  vertical-align: middle;
+  font-weight: 300;
+  font-size: 14px;
+  border-right: 1px solid var(--table-td-border-right);
+}
+
+.my-table td:last-child {
+  border-right: 0px;
+}
+
+.summary-table td:first-child {
+  vertical-align: top;
+  text-align: right;
+}
+
+.input-table td {
+  text-align: center;
+}
+
+.error-text {
+  color: var(--error-text);
+}
+
+</style>
+</head>
+<body>
+
+<h1>Cargo Build Timings</h1>
+See <a href="https://doc.rust-lang.org/nightly/cargo/reference/timings.html">Documentation</a>
+
+<table class="my-table summary-table">
+<tr>
+<td>Targets:</td><td>cargo-timings 1.0.0 (lib)<br>cargo-timings 1.0.0 ( cargo-timings "bin")</td>
+</tr>
+<tr>
+<td>Profile:</td><td>dev</td>
+</tr>
+<tr>
+<td>Fresh units:</td><td>0</td>
+</tr>
+<tr>
+<td>Dirty units:</td><td>140</td>
+</tr>
+<tr>
+<td>Total units:</td><td>140</td>
+</tr>
+<tr>
+<td>Max concurrency:</td><td>3 (jobs=2 ncpu=2)</td>
+</tr>
+<tr>
+<td>Build start:</td><td>2026-06-21T09:55:01.37348584Z</td>
+</tr>
+<tr>
+<td>Total time:</td><td>220.5s (3m 40.5s)</td>
+</tr>
+<tr>
+<td>rustc:</td><td>rustc 1.98.0-nightly (654079540 2026-06-12)<br>Host: x86_64-unknown-linux-gnu<br>Target: x86_64-unknown-linux-gnu</td>
+</tr>
+
+</table>
+
+<table class="input-table">
+  <tr>
+    <td><label for="min-unit-time">Min unit time:</label></td>
+    <td title="Scale corresponds to a number of pixels per second. It is automatically initialized based on your viewport width.">
+      <label for="scale">Scale:</label>
+    </td>
+  </tr>
+  <tr>
+    <td><input type="range" min="0" max="30" step="0.1" value="0" id="min-unit-time"></td>
+    <!--
+        The scale corresponds to some number of "pixels per second".
+        Its min, max, and initial values are automatically set by JavaScript on page load,
+        based on the client viewport.
+    -->
+    <td><input type="range" min="1" max="100" value="50" id="scale"></td>
+  </tr>
+  <tr>
+    <td><output for="min-unit-time" id="min-unit-time-output"></output></td>
+    <td><output for="scale" id="scale-output"></output></td>
+    <td></td>
+  </tr>
+</table>
+
+<div id="pipeline-container" class="canvas-container"></div>
+<div id="timing-container" class="canvas-container"></div>
+
+<table class="my-table">
+<thead>
+<tr>
+  <th></th>
+  <th>Unit</th>
+  <th>Total</th>
+  <th>Frontend</th>
+<th>Codegen</th>
+  <th>Features</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+<td>1.</td>
+<td>syn v2.0.118</td>
+<td>31.7s</td>
+<td>19.5s (61%)</td>
+<td>12.2s (39%)</td>
+<td>clone-impls, default, derive, extra-traits, full, parsing, printing, proc-macro, visit</td>
+</tr>
+
+<tr>
+<td>2.</td>
+<td>clap_builder v4.6.0</td>
+<td>28.6s</td>
+<td>13.1s (46%)</td>
+<td>15.5s (54%)</td>
+<td>color, error-context, help, std, suggestions, usage</td>
+</tr>
+
+<tr>
+<td>3.</td>
+<td>darling_core v0.23.0</td>
+<td>17.2s</td>
+<td>9.8s (57%)</td>
+<td>7.3s (43%)</td>
+<td>strsim, suggestions</td>
+</tr>
+
+<tr>
+<td>4.</td>
+<td>scraper v0.27.0</td>
+<td>15.1s</td>
+<td>5.0s (33%)</td>
+<td>10.1s (67%)</td>
+<td>default, errors, main</td>
+</tr>
+
+<tr>
+<td>5.</td>
+<td>ratatui-widgets v0.3.2</td>
+<td>14.4s</td>
+<td>7.5s (52%)</td>
+<td>7.0s (48%)</td>
+<td>calendar, std</td>
+</tr>
+
+<tr>
+<td>6.</td>
+<td>clap_derive v4.6.1</td>
+<td>14.0s</td>
+<td></td>
+<td></td>
+<td>default</td>
+</tr>
+
+<tr>
+<td>7.</td>
+<td>chrono v0.4.45</td>
+<td>13.8s</td>
+<td>7.5s (55%)</td>
+<td>6.3s (45%)</td>
+<td>alloc, clock, default, iana-time-zone, js-sys, now, oldtime, std, wasm-bindgen, wasmbind, winapi, windows-link</td>
+</tr>
+
+<tr>
+<td>8.</td>
+<td>ratatui-core v0.1.2</td>
+<td>12.6s</td>
+<td>6.5s (51%)</td>
+<td>6.2s (49%)</td>
+<td>default, layout-cache, std, underline-color</td>
+</tr>
+
+<tr>
+<td>9.</td>
+<td>cargo-timings v1.0.0 cargo-timings "bin"</td>
+<td>12.5s</td>
+<td></td>
+<td></td>
+<td>default, tui, unicode-segmentation</td>
+</tr>
+
+<tr>
+<td>10.</td>
+<td>strum_macros v0.28.0</td>
+<td>11.3s</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>11.</td>
+<td>itertools v0.14.0</td>
+<td>10.6s</td>
+<td>10.2s (96%)</td>
+<td>0.4s (4%)</td>
+<td>use_alloc, use_std</td>
+</tr>
+
+<tr>
+<td>12.</td>
+<td>html5ever v0.39.0</td>
+<td>9.0s</td>
+<td>7.8s (87%)</td>
+<td>1.2s (13%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>13.</td>
+<td>crossterm v0.29.0</td>
+<td>8.8s</td>
+<td>5.4s (61%)</td>
+<td>3.4s (39%)</td>
+<td>bracketed-paste, default, derive-more, events, windows</td>
+</tr>
+
+<tr>
+<td>14.</td>
+<td>cargo-timings v1.0.0</td>
+<td>8.4s</td>
+<td>3.2s (38%)</td>
+<td>5.2s (62%)</td>
+<td>default, tui, unicode-segmentation</td>
+</tr>
+
+<tr>
+<td>15.</td>
+<td>derive_more-impl v2.1.1</td>
+<td>8.1s</td>
+<td></td>
+<td></td>
+<td>add, add_assign, default, is_variant</td>
+</tr>
+
+<tr>
+<td>16.</td>
+<td>selectors v0.38.0</td>
+<td>7.4s</td>
+<td>5.6s (76%)</td>
+<td>1.7s (24%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>17.</td>
+<td>deranged v0.5.8</td>
+<td>6.6s</td>
+<td>6.5s (98%)</td>
+<td>0.1s (2%)</td>
+<td>default</td>
+</tr>
+
+<tr>
+<td>18.</td>
+<td>thiserror-impl v2.0.18</td>
+<td>6.5s</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>19.</td>
+<td>rustix v1.1.4</td>
+<td>5.6s</td>
+<td>4.3s (77%)</td>
+<td>1.3s (23%)</td>
+<td>alloc, std, stdio, termios</td>
+</tr>
+
+<tr>
+<td>20.</td>
+<td>num-traits v0.2.19</td>
+<td>5.5s</td>
+<td>4.6s (84%)</td>
+<td>0.9s (16%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>21.</td>
+<td>libc v0.2.186</td>
+<td>5.4s</td>
+<td>5.2s (96%)</td>
+<td>0.2s (4%)</td>
+<td>default, std</td>
+</tr>
+
+<tr>
+<td>22.</td>
+<td>cssparser v0.37.0</td>
+<td>4.8s</td>
+<td>3.4s (71%)</td>
+<td>1.4s (29%)</td>
+<td>default, fast_match_byte, fast_match_color</td>
+</tr>
+
+<tr>
+<td>23.</td>
+<td>parking_lot v0.12.5</td>
+<td>4.3s</td>
+<td>3.1s (71%)</td>
+<td>1.2s (29%)</td>
+<td>default</td>
+</tr>
+
+<tr>
+<td>24.</td>
+<td>kasuari v0.4.12</td>
+<td>4.3s</td>
+<td>2.0s (47%)</td>
+<td>2.3s (53%)</td>
+<td>std</td>
+</tr>
+
+<tr>
+<td>25.</td>
+<td>phf_macros v0.13.1</td>
+<td>4.2s</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>26.</td>
+<td>compact_str v0.9.1</td>
+<td>4.1s</td>
+<td>2.9s (70%)</td>
+<td>1.2s (30%)</td>
+<td>std</td>
+</tr>
+
+<tr>
+<td>27.</td>
+<td>time v0.3.49</td>
+<td>4.0s</td>
+<td>3.8s (94%)</td>
+<td>0.2s (6%)</td>
+<td>alloc, local-offset, std</td>
+</tr>
+
+<tr>
+<td>28.</td>
+<td>web_atoms v0.2.5</td>
+<td>3.9s</td>
+<td>3.4s (89%)</td>
+<td>0.4s (11%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>29.</td>
+<td>hashbrown v0.17.1</td>
+<td>3.8s</td>
+<td>3.6s (95%)</td>
+<td>0.2s (5%)</td>
+<td>allocator-api2, default, default-hasher, equivalent, inline-more, raw-entry</td>
+</tr>
+
+<tr>
+<td>30.</td>
+<td>hashbrown v0.16.1</td>
+<td>3.7s</td>
+<td>3.5s (93%)</td>
+<td>0.3s (7%)</td>
+<td>allocator-api2, default, default-hasher, equivalent, inline-more, raw-entry</td>
+</tr>
+
+<tr>
+<td>31.</td>
+<td>rustversion v1.0.22 build-script</td>
+<td>3.7s</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>32.</td>
+<td>proc-macro2 v1.0.106 build-script</td>
+<td>3.6s</td>
+<td></td>
+<td></td>
+<td>default, proc-macro</td>
+</tr>
+
+<tr>
+<td>33.</td>
+<td>proc-macro2 v1.0.106</td>
+<td>3.6s</td>
+<td>2.3s (65%)</td>
+<td>1.2s (35%)</td>
+<td>default, proc-macro</td>
+</tr>
+
+<tr>
+<td>34.</td>
+<td>quote v1.0.45 build-script</td>
+<td>3.6s</td>
+<td></td>
+<td></td>
+<td>default, proc-macro</td>
+</tr>
+
+<tr>
+<td>35.</td>
+<td>mio v1.2.1</td>
+<td>3.5s</td>
+<td>2.1s (62%)</td>
+<td>1.3s (38%)</td>
+<td>default, log, net, os-ext, os-poll</td>
+</tr>
+
+<tr>
+<td>36.</td>
+<td>heck v0.5.0</td>
+<td>3.3s</td>
+<td>2.6s (80%)</td>
+<td>0.7s (20%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>37.</td>
+<td>litrs v1.0.0</td>
+<td>2.9s</td>
+<td>1.9s (67%)</td>
+<td>0.9s (33%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>38.</td>
+<td>instability v0.3.12</td>
+<td>2.8s</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>39.</td>
+<td>getopts v0.2.24</td>
+<td>2.8s</td>
+<td>1.3s (47%)</td>
+<td>1.5s (53%)</td>
+<td>default, unicode</td>
+</tr>
+
+<tr>
+<td>40.</td>
+<td>anyhow v1.0.102</td>
+<td>2.7s</td>
+<td>1.7s (65%)</td>
+<td>0.9s (35%)</td>
+<td>default, std</td>
+</tr>
+
+<tr>
+<td>41.</td>
+<td>rustversion v1.0.22</td>
+<td>2.6s</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>42.</td>
+<td>document-features v0.2.12</td>
+<td>2.5s</td>
+<td></td>
+<td></td>
+<td>default</td>
+</tr>
+
+<tr>
+<td>43.</td>
+<td>allocator-api2 v0.2.21</td>
+<td>2.5s</td>
+<td>2.4s (95%)</td>
+<td>0.1s (5%)</td>
+<td>alloc</td>
+</tr>
+
+<tr>
+<td>44.</td>
+<td>ratatui v0.30.2</td>
+<td>2.4s</td>
+<td>1.9s (76%)</td>
+<td>0.6s (24%)</td>
+<td>all-widgets, crossterm, default, layout-cache, macros, std, underline-color, widget-calendar</td>
+</tr>
+
+<tr>
+<td>45.</td>
+<td>signal-hook v0.3.18</td>
+<td>2.4s</td>
+<td>1.4s (60%)</td>
+<td>0.9s (40%)</td>
+<td>channel, default, iterator</td>
+</tr>
+
+<tr>
+<td>46.</td>
+<td>anyhow v1.0.102 build-script</td>
+<td>2.4s</td>
+<td></td>
+<td></td>
+<td>default, std</td>
+</tr>
+
+<tr>
+<td>47.</td>
+<td>ratatui-crossterm v0.1.2</td>
+<td>2.2s</td>
+<td>2.0s (87%)</td>
+<td>0.3s (13%)</td>
+<td>crossterm_0_29, default, underline-color</td>
+</tr>
+
+<tr>
+<td>48.</td>
+<td>web_atoms v0.2.5 build-script</td>
+<td>2.2s</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>49.</td>
+<td>linux-raw-sys v0.12.1</td>
+<td>2.0s</td>
+<td>2.0s (96%)</td>
+<td>0.1s (4%)</td>
+<td>auxvec, elf, errno, general, ioctl, no_std</td>
+</tr>
+
+<tr>
+<td>50.</td>
+<td>strsim v0.11.1</td>
+<td>2.0s</td>
+<td>0.9s (46%)</td>
+<td>1.1s (54%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>51.</td>
+<td>indoc v2.0.7</td>
+<td>2.0s</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>52.</td>
+<td>string_cache_codegen v0.6.1</td>
+<td>2.0s</td>
+<td>1.0s (53%)</td>
+<td>0.9s (47%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>53.</td>
+<td>ego-tree v0.11.0</td>
+<td>1.9s</td>
+<td>1.8s (92%)</td>
+<td>0.2s (8%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>54.</td>
+<td>unicode-segmentation v1.13.3</td>
+<td>1.9s</td>
+<td>1.5s (77%)</td>
+<td>0.4s (23%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>55.</td>
+<td>autocfg v1.5.1</td>
+<td>1.8s</td>
+<td>1.0s (53%)</td>
+<td>0.9s (47%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>56.</td>
+<td>cssparser-macros v0.7.0</td>
+<td>1.7s</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>57.</td>
+<td>signal-hook-registry v1.4.8</td>
+<td>1.7s</td>
+<td>0.9s (52%)</td>
+<td>0.8s (48%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>58.</td>
+<td>web_atoms v0.2.5 build-script (run)</td>
+<td>1.7s</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>59.</td>
+<td>selectors v0.38.0 build-script</td>
+<td>1.6s</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>60.</td>
+<td>rustix v1.1.4 build-script</td>
+<td>1.6s</td>
+<td></td>
+<td></td>
+<td>alloc, std, stdio, termios</td>
+</tr>
+
+<tr>
+<td>61.</td>
+<td>anstream v1.0.0</td>
+<td>1.6s</td>
+<td>1.0s (66%)</td>
+<td>0.5s (34%)</td>
+<td>auto, default, wincon</td>
+</tr>
+
+<tr>
+<td>62.</td>
+<td>tendril v0.5.0</td>
+<td>1.6s</td>
+<td>1.5s (94%)</td>
+<td>0.1s (6%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>63.</td>
+<td>darling_macro v0.23.0</td>
+<td>1.5s</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>64.</td>
+<td>thiserror v2.0.18 build-script</td>
+<td>1.4s</td>
+<td></td>
+<td></td>
+<td>std</td>
+</tr>
+
+<tr>
+<td>65.</td>
+<td>num-traits v0.2.19 build-script</td>
+<td>1.4s</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>66.</td>
+<td>libc v0.2.186 build-script</td>
+<td>1.4s</td>
+<td></td>
+<td></td>
+<td>default, std</td>
+</tr>
+
+<tr>
+<td>67.</td>
+<td>phf_shared v0.13.1</td>
+<td>1.3s</td>
+<td>1.1s (86%)</td>
+<td>0.2s (14%)</td>
+<td>default, std</td>
+</tr>
+
+<tr>
+<td>68.</td>
+<td>parking_lot_core v0.9.12</td>
+<td>1.3s</td>
+<td>0.8s (66%)</td>
+<td>0.4s (34%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>69.</td>
+<td>iana-time-zone v0.1.65</td>
+<td>1.2s</td>
+<td>0.5s (44%)</td>
+<td>0.7s (56%)</td>
+<td>fallback</td>
+</tr>
+
+<tr>
+<td>70.</td>
+<td>anstyle v1.0.14</td>
+<td>1.2s</td>
+<td>1.0s (80%)</td>
+<td>0.2s (20%)</td>
+<td>default, std</td>
+</tr>
+
+<tr>
+<td>71.</td>
+<td>string_cache v0.9.0</td>
+<td>1.2s</td>
+<td>0.9s (75%)</td>
+<td>0.3s (25%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>72.</td>
+<td>convert_case v0.10.0</td>
+<td>1.2s</td>
+<td>0.7s (57%)</td>
+<td>0.5s (43%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>73.</td>
+<td>quote v1.0.45</td>
+<td>1.2s</td>
+<td>0.8s (71%)</td>
+<td>0.3s (29%)</td>
+<td>default, proc-macro</td>
+</tr>
+
+<tr>
+<td>74.</td>
+<td>lock_api v0.4.14</td>
+<td>1.2s</td>
+<td>1.1s (92%)</td>
+<td>0.1s (8%)</td>
+<td>atomic_usize, default</td>
+</tr>
+
+<tr>
+<td>75.</td>
+<td>line-clipping v0.3.7</td>
+<td>1.2s</td>
+<td>0.8s (69%)</td>
+<td>0.4s (31%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>76.</td>
+<td>markup5ever v0.39.0</td>
+<td>1.1s</td>
+<td>0.7s (61%)</td>
+<td>0.4s (39%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>77.</td>
+<td>siphasher v1.0.3</td>
+<td>1.1s</td>
+<td>0.9s (87%)</td>
+<td>0.1s (13%)</td>
+<td>default, std</td>
+</tr>
+
+<tr>
+<td>78.</td>
+<td>either v1.16.0</td>
+<td>1.1s</td>
+<td>1.0s (95%)</td>
+<td>0.1s (5%)</td>
+<td>std, use_std</td>
+</tr>
+
+<tr>
+<td>79.</td>
+<td>bitflags v2.13.0</td>
+<td>1.1s</td>
+<td>0.7s (68%)</td>
+<td>0.3s (32%)</td>
+<td>std</td>
+</tr>
+
+<tr>
+<td>80.</td>
+<td>foldhash v0.2.0</td>
+<td>1.1s</td>
+<td>0.4s (36%)</td>
+<td>0.7s (64%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>81.</td>
+<td>clap_lex v1.1.0</td>
+<td>1.1s</td>
+<td>0.5s (51%)</td>
+<td>0.5s (49%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>82.</td>
+<td>ryu v1.0.23</td>
+<td>1.0s</td>
+<td>0.8s (74%)</td>
+<td>0.3s (26%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>83.</td>
+<td>smallvec v1.15.2</td>
+<td>1.0s</td>
+<td>0.9s (89%)</td>
+<td>0.1s (11%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>84.</td>
+<td>log v0.4.32</td>
+<td>1.0s</td>
+<td>0.8s (81%)</td>
+<td>0.2s (19%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>85.</td>
+<td>errno v0.3.14</td>
+<td>1.0s</td>
+<td>0.4s (39%)</td>
+<td>0.6s (61%)</td>
+<td>default, std</td>
+</tr>
+
+<tr>
+<td>86.</td>
+<td>powerfmt v0.2.0</td>
+<td>0.9s</td>
+<td>0.6s (70%)</td>
+<td>0.3s (30%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>87.</td>
+<td>time-core v0.1.9</td>
+<td>0.9s</td>
+<td>0.8s (93%)</td>
+<td>0.1s (7%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>88.</td>
+<td>lru v0.18.0</td>
+<td>0.8s</td>
+<td>0.7s (89%)</td>
+<td>0.1s (11%)</td>
+<td>default, hashbrown</td>
+</tr>
+
+<tr>
+<td>89.</td>
+<td>itoa v1.0.18</td>
+<td>0.8s</td>
+<td>0.7s (80%)</td>
+<td>0.2s (20%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>90.</td>
+<td>phf_generator v0.13.1</td>
+<td>0.8s</td>
+<td>0.5s (63%)</td>
+<td>0.3s (37%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>91.</td>
+<td>parking_lot_core v0.9.12 build-script</td>
+<td>0.8s</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>92.</td>
+<td>unicode-width v0.2.2</td>
+<td>0.8s</td>
+<td>0.7s (87%)</td>
+<td>0.1s (13%)</td>
+<td>cjk, default</td>
+</tr>
+
+<tr>
+<td>93.</td>
+<td>ratatui-macros v0.7.2</td>
+<td>0.8s</td>
+<td>0.6s (76%)</td>
+<td>0.2s (24%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>94.</td>
+<td>unicode-truncate v2.0.1</td>
+<td>0.7s</td>
+<td>0.7s (93%)</td>
+<td>0.0s (7%)</td>
+<td>std</td>
+</tr>
+
+<tr>
+<td>95.</td>
+<td>rustix v1.1.4 build-script (run)</td>
+<td>0.7s</td>
+<td></td>
+<td></td>
+<td>alloc, std, stdio, termios</td>
+</tr>
+
+<tr>
+<td>96.</td>
+<td>num_threads v0.1.7</td>
+<td>0.7s</td>
+<td>0.4s (53%)</td>
+<td>0.3s (47%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>97.</td>
+<td>anstyle-parse v1.0.0</td>
+<td>0.7s</td>
+<td>0.5s (72%)</td>
+<td>0.2s (28%)</td>
+<td>default, utf8</td>
+</tr>
+
+<tr>
+<td>98.</td>
+<td>phf v0.13.1</td>
+<td>0.7s</td>
+<td>0.6s (90%)</td>
+<td>0.1s (10%)</td>
+<td>default, macros, phf_macros, std</td>
+</tr>
+
+<tr>
+<td>99.</td>
+<td>servo_arc v0.4.3</td>
+<td>0.7s</td>
+<td>0.6s (91%)</td>
+<td>0.1s (9%)</td>
+<td>default, track_alloc_size</td>
+</tr>
+
+<tr>
+<td>100.</td>
+<td>num-traits v0.2.19 build-script (run)</td>
+<td>0.7s</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>101.</td>
+<td>utf-8 v0.7.6</td>
+<td>0.6s</td>
+<td>0.4s (66%)</td>
+<td>0.2s (34%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>102.</td>
+<td>rustc-hash v2.1.2</td>
+<td>0.6s</td>
+<td>0.6s (89%)</td>
+<td>0.1s (11%)</td>
+<td>default, std</td>
+</tr>
+
+<tr>
+<td>103.</td>
+<td>instability v0.3.12 build-script</td>
+<td>0.6s</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>104.</td>
+<td>fastrand v2.4.1</td>
+<td>0.6s</td>
+<td>0.5s (90%)</td>
+<td>0.1s (10%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>105.</td>
+<td>num-conv v0.2.2</td>
+<td>0.6s</td>
+<td>0.5s (91%)</td>
+<td>0.1s (9%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>106.</td>
+<td>signal-hook v0.3.18 build-script</td>
+<td>0.5s</td>
+<td></td>
+<td></td>
+<td>channel, default, iterator</td>
+</tr>
+
+<tr>
+<td>107.</td>
+<td>unicode-ident v1.0.24</td>
+<td>0.5s</td>
+<td>0.3s (65%)</td>
+<td>0.2s (35%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>108.</td>
+<td>castaway v0.2.4</td>
+<td>0.5s</td>
+<td>0.5s (91%)</td>
+<td>0.1s (9%)</td>
+<td>alloc</td>
+</tr>
+
+<tr>
+<td>109.</td>
+<td>dtoa v1.0.11</td>
+<td>0.5s</td>
+<td>0.4s (84%)</td>
+<td>0.1s (16%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>110.</td>
+<td>critical-section v1.2.0</td>
+<td>0.5s</td>
+<td>0.4s (91%)</td>
+<td>0.0s (9%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>111.</td>
+<td>strum v0.28.0</td>
+<td>0.4s</td>
+<td>0.3s (77%)</td>
+<td>0.1s (23%)</td>
+<td>derive, std, strum_macros</td>
+</tr>
+
+<tr>
+<td>112.</td>
+<td>phf_codegen v0.13.1</td>
+<td>0.4s</td>
+<td>0.3s (83%)</td>
+<td>0.1s (17%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>113.</td>
+<td>signal-hook-mio v0.2.5</td>
+<td>0.4s</td>
+<td>0.3s (80%)</td>
+<td>0.1s (20%)</td>
+<td>mio-1_0, support-v1_0</td>
+</tr>
+
+<tr>
+<td>114.</td>
+<td>proc-macro2 v1.0.106 build-script (run)</td>
+<td>0.4s</td>
+<td></td>
+<td></td>
+<td>default, proc-macro</td>
+</tr>
+
+<tr>
+<td>115.</td>
+<td>derive_more v2.1.1</td>
+<td>0.4s</td>
+<td>0.3s (76%)</td>
+<td>0.1s (24%)</td>
+<td>add, add_assign, default, is_variant, std</td>
+</tr>
+
+<tr>
+<td>116.</td>
+<td>anyhow v1.0.102 build-script (run)</td>
+<td>0.4s</td>
+<td></td>
+<td></td>
+<td>default, std</td>
+</tr>
+
+<tr>
+<td>117.</td>
+<td>dtoa-short v0.3.5</td>
+<td>0.3s</td>
+<td>0.2s (71%)</td>
+<td>0.1s (29%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>118.</td>
+<td>ident_case v1.0.1</td>
+<td>0.3s</td>
+<td>0.3s (81%)</td>
+<td>0.1s (19%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>119.</td>
+<td>clap v4.6.1</td>
+<td>0.3s</td>
+<td>0.3s (87%)</td>
+<td>0.0s (13%)</td>
+<td>color, default, derive, error-context, help, std, suggestions, usage</td>
+</tr>
+
+<tr>
+<td>120.</td>
+<td>darling v0.23.0</td>
+<td>0.3s</td>
+<td>0.3s (87%)</td>
+<td>0.0s (13%)</td>
+<td>default, suggestions</td>
+</tr>
+
+<tr>
+<td>121.</td>
+<td>equivalent v1.0.2</td>
+<td>0.3s</td>
+<td>0.2s (69%)</td>
+<td>0.1s (31%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>122.</td>
+<td>utf8parse v0.2.2</td>
+<td>0.3s</td>
+<td>0.2s (77%)</td>
+<td>0.1s (23%)</td>
+<td>default</td>
+</tr>
+
+<tr>
+<td>123.</td>
+<td>anstyle-query v1.1.5</td>
+<td>0.2s</td>
+<td>0.2s (76%)</td>
+<td>0.1s (24%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>124.</td>
+<td>colorchoice v1.0.5</td>
+<td>0.2s</td>
+<td>0.2s (72%)</td>
+<td>0.1s (28%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>125.</td>
+<td>thiserror v2.0.18</td>
+<td>0.2s</td>
+<td>0.2s (84%)</td>
+<td>0.0s (16%)</td>
+<td>std</td>
+</tr>
+
+<tr>
+<td>126.</td>
+<td>is_terminal_polyfill v1.70.2</td>
+<td>0.2s</td>
+<td>0.2s (79%)</td>
+<td>0.0s (21%)</td>
+<td>default</td>
+</tr>
+
+<tr>
+<td>127.</td>
+<td>scopeguard v1.2.0</td>
+<td>0.2s</td>
+<td>0.2s (78%)</td>
+<td>0.1s (22%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>128.</td>
+<td>thiserror v2.0.18 build-script (run)</td>
+<td>0.2s</td>
+<td></td>
+<td></td>
+<td>std</td>
+</tr>
+
+<tr>
+<td>129.</td>
+<td>rustversion v1.0.22 build-script (run)</td>
+<td>0.2s</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>130.</td>
+<td>stable_deref_trait v1.2.1</td>
+<td>0.2s</td>
+<td>0.1s (83%)</td>
+<td>0.0s (17%)</td>
+<td>alloc, default, std</td>
+</tr>
+
+<tr>
+<td>131.</td>
+<td>static_assertions v1.1.0</td>
+<td>0.2s</td>
+<td>0.1s (78%)</td>
+<td>0.0s (22%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>132.</td>
+<td>cfg-if v1.0.4</td>
+<td>0.2s</td>
+<td>0.1s (76%)</td>
+<td>0.0s (24%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>133.</td>
+<td>precomputed-hash v0.1.1</td>
+<td>0.2s</td>
+<td>0.1s (81%)</td>
+<td>0.0s (19%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>134.</td>
+<td>new_debug_unreachable v1.0.6</td>
+<td>0.1s</td>
+<td>0.1s (77%)</td>
+<td>0.0s (23%)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>135.</td>
+<td>libc v0.2.186 build-script (run)</td>
+<td>0.1s</td>
+<td></td>
+<td></td>
+<td>default, std</td>
+</tr>
+
+<tr>
+<td>136.</td>
+<td>instability v0.3.12 build-script (run)</td>
+<td>0.1s</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>137.</td>
+<td>quote v1.0.45 build-script (run)</td>
+<td>0.1s</td>
+<td></td>
+<td></td>
+<td>default, proc-macro</td>
+</tr>
+
+<tr>
+<td>138.</td>
+<td>parking_lot_core v0.9.12 build-script (run)</td>
+<td>0.0s</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>139.</td>
+<td>selectors v0.38.0 build-script (run)</td>
+<td>0.0s</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>140.</td>
+<td>signal-hook v0.3.18 build-script (run)</td>
+<td>0.0s</td>
+<td></td>
+<td></td>
+<td>channel, default, iterator</td>
+</tr>
+</tbody>
+</table>
+<script>
+DURATION = 221;
+const UNIT_DATA = [
+  {
+    "i": 86,
+    "name": "proc-macro2",
+    "version": "1.0.106",
+    "mode": "todo",
+    "target": " build-script",
+    "features": [
+      "default",
+      "proc-macro"
+    ],
+    "start": 3.01,
+    "duration": 3.58,
+    "unblocked_units": [
+      85
+    ],
+    "unblocked_rmeta_units": [],
+    "sections": null
+  },
+  {
+    "i": 89,
+    "name": "quote",
+    "version": "1.0.45",
+    "mode": "todo",
+    "target": " build-script",
+    "features": [
+      "default",
+      "proc-macro"
+    ],
+    "start": 3.03,
+    "duration": 3.57,
+    "unblocked_units": [
+      88
+    ],
+    "unblocked_rmeta_units": [],
+    "sections": null
+  },
+  {
+    "i": 85,
+    "name": "proc-macro2",
+    "version": "1.0.106",
+    "mode": "run-custom-build",
+    "target": " build-script (run)",
+    "features": [
+      "default",
+      "proc-macro"
+    ],
+    "start": 6.6,
+    "duration": 0.4,
+    "unblocked_units": [
+      84
+    ],
+    "unblocked_rmeta_units": [],
+    "sections": null
+  },
+  {
+    "i": 131,
+    "name": "unicode-ident",
+    "version": "1.0.24",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 6.6,
+    "duration": 0.54,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.35
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.35,
+          "end": 0.54
+        }
+      ]
+    ]
+  },
+  {
+    "i": 84,
+    "name": "proc-macro2",
+    "version": "1.0.106",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "default",
+      "proc-macro"
+    ],
+    "start": 7.0,
+    "duration": 3.58,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      87
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 2.34
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 2.34,
+          "end": 3.58
+        }
+      ]
+    ]
+  },
+  {
+    "i": 88,
+    "name": "quote",
+    "version": "1.0.45",
+    "mode": "run-custom-build",
+    "target": " build-script (run)",
+    "features": [
+      "default",
+      "proc-macro"
+    ],
+    "start": 7.16,
+    "duration": 0.08,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": null
+  },
+  {
+    "i": 57,
+    "name": "libc",
+    "version": "0.2.186",
+    "mode": "todo",
+    "target": " build-script",
+    "features": [
+      "default",
+      "std"
+    ],
+    "start": 7.24,
+    "duration": 1.41,
+    "unblocked_units": [
+      58
+    ],
+    "unblocked_rmeta_units": [],
+    "sections": null
+  },
+  {
+    "i": 58,
+    "name": "libc",
+    "version": "0.2.186",
+    "mode": "run-custom-build",
+    "target": " build-script (run)",
+    "features": [
+      "default",
+      "std"
+    ],
+    "start": 8.66,
+    "duration": 0.1,
+    "unblocked_units": [
+      56
+    ],
+    "unblocked_rmeta_units": [],
+    "sections": null
+  },
+  {
+    "i": 56,
+    "name": "libc",
+    "version": "0.2.186",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "default",
+      "std"
+    ],
+    "start": 8.77,
+    "duration": 5.4,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      38
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 5.21
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 5.21,
+          "end": 5.4
+        }
+      ]
+    ]
+  },
+  {
+    "i": 87,
+    "name": "quote",
+    "version": "1.0.45",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "default",
+      "proc-macro"
+    ],
+    "start": 10.59,
+    "duration": 1.18,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      123
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.84
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.84,
+          "end": 1.18
+        }
+      ]
+    ]
+  },
+  {
+    "i": 123,
+    "name": "syn",
+    "version": "2.0.118",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "clone-impls",
+      "default",
+      "derive",
+      "extra-traits",
+      "full",
+      "parsing",
+      "printing",
+      "proc-macro",
+      "visit"
+    ],
+    "start": 11.78,
+    "duration": 31.71,
+    "unblocked_units": [
+      122,
+      128,
+      25,
+      80,
+      17
+    ],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 19.46
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 19.46,
+          "end": 31.71
+        }
+      ]
+    ]
+  },
+  {
+    "i": 114,
+    "name": "siphasher",
+    "version": "1.0.3",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "default",
+      "std"
+    ],
+    "start": 14.18,
+    "duration": 1.07,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      81
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.93
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.93,
+          "end": 1.07
+        }
+      ]
+    ]
+  },
+  {
+    "i": 81,
+    "name": "phf_shared",
+    "version": "0.13.1",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "default",
+      "std"
+    ],
+    "start": 15.26,
+    "duration": 1.29,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 1.11
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 1.11,
+          "end": 1.29
+        }
+      ]
+    ]
+  },
+  {
+    "i": 39,
+    "name": "fastrand",
+    "version": "2.4.1",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 16.56,
+    "duration": 0.59,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      79
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.53
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.53,
+          "end": 0.59
+        }
+      ]
+    ]
+  },
+  {
+    "i": 79,
+    "name": "phf_generator",
+    "version": "0.13.1",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 17.15,
+    "duration": 0.78,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      78,
+      119
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.49
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.49,
+          "end": 0.78
+        }
+      ]
+    ]
+  },
+  {
+    "i": 13,
+    "name": "cfg-if",
+    "version": "1.0.4",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 17.94,
+    "duration": 0.17,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.13
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.13,
+          "end": 0.17
+        }
+      ]
+    ]
+  },
+  {
+    "i": 115,
+    "name": "smallvec",
+    "version": "1.15.2",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 18.12,
+    "duration": 0.97,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.86
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.86,
+          "end": 0.97
+        }
+      ]
+    ]
+  },
+  {
+    "i": 132,
+    "name": "unicode-segmentation",
+    "version": "1.13.3",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 19.11,
+    "duration": 1.94,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      21
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 1.49
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 1.49,
+          "end": 1.94
+        }
+      ]
+    ]
+  },
+  {
+    "i": 75,
+    "name": "parking_lot_core",
+    "version": "0.9.12",
+    "mode": "todo",
+    "target": " build-script",
+    "features": [],
+    "start": 21.07,
+    "duration": 0.78,
+    "unblocked_units": [
+      76
+    ],
+    "unblocked_rmeta_units": [],
+    "sections": null
+  },
+  {
+    "i": 76,
+    "name": "parking_lot_core",
+    "version": "0.9.12",
+    "mode": "run-custom-build",
+    "target": " build-script (run)",
+    "features": [],
+    "start": 21.87,
+    "duration": 0.02,
+    "unblocked_units": [
+      74
+    ],
+    "unblocked_rmeta_units": [],
+    "sections": null
+  },
+  {
+    "i": 120,
+    "name": "strsim",
+    "version": "0.11.1",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 21.89,
+    "duration": 2.05,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.95
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.95,
+          "end": 2.05
+        }
+      ]
+    ]
+  },
+  {
+    "i": 9,
+    "name": "bitflags",
+    "version": "2.13.0",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "std"
+    ],
+    "start": 23.94,
+    "duration": 1.06,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      59
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.72
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.72,
+          "end": 1.06
+        }
+      ]
+    ]
+  },
+  {
+    "i": 103,
+    "name": "scopeguard",
+    "version": "1.2.0",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 25.01,
+    "duration": 0.23,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      62
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.18
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.18,
+          "end": 0.23
+        }
+      ]
+    ]
+  },
+  {
+    "i": 62,
+    "name": "lock_api",
+    "version": "0.4.14",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "atomic_usize",
+      "default"
+    ],
+    "start": 25.25,
+    "duration": 1.18,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 1.09
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 1.09,
+          "end": 1.18
+        }
+      ]
+    ]
+  },
+  {
+    "i": 74,
+    "name": "parking_lot_core",
+    "version": "0.9.12",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 26.43,
+    "duration": 1.28,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      73
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.84
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.84,
+          "end": 1.28
+        }
+      ]
+    ]
+  },
+  {
+    "i": 78,
+    "name": "phf_codegen",
+    "version": "0.13.1",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 27.73,
+    "duration": 0.42,
+    "unblocked_units": [
+      106
+    ],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.35
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.35,
+          "end": 0.42
+        }
+      ]
+    ]
+  },
+  {
+    "i": 37,
+    "name": "equivalent",
+    "version": "1.0.2",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 28.16,
+    "duration": 0.29,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.2
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.2,
+          "end": 0.29
+        }
+      ]
+    ]
+  },
+  {
+    "i": 40,
+    "name": "foldhash",
+    "version": "0.2.0",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 28.45,
+    "duration": 1.06,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.38
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.38,
+          "end": 1.06
+        }
+      ]
+    ]
+  },
+  {
+    "i": 63,
+    "name": "log",
+    "version": "0.4.32",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 29.53,
+    "duration": 0.96,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      66
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.78
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.78,
+          "end": 0.96
+        }
+      ]
+    ]
+  },
+  {
+    "i": 54,
+    "name": "itoa",
+    "version": "1.0.18",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 30.53,
+    "duration": 0.81,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.65
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.65,
+          "end": 0.81
+        }
+      ]
+    ]
+  },
+  {
+    "i": 0,
+    "name": "allocator-api2",
+    "version": "0.2.21",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "alloc"
+    ],
+    "start": 31.35,
+    "duration": 2.47,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      43,
+      42
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 2.35
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 2.35,
+          "end": 2.47
+        }
+      ]
+    ]
+  },
+  {
+    "i": 101,
+    "name": "rustversion",
+    "version": "1.0.22",
+    "mode": "todo",
+    "target": " build-script",
+    "features": [],
+    "start": 33.83,
+    "duration": 3.69,
+    "unblocked_units": [
+      100
+    ],
+    "unblocked_rmeta_units": [],
+    "sections": null
+  },
+  {
+    "i": 44,
+    "name": "heck",
+    "version": "0.5.0",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 37.52,
+    "duration": 3.27,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 2.61
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 2.61,
+          "end": 3.27
+        }
+      ]
+    ]
+  },
+  {
+    "i": 100,
+    "name": "rustversion",
+    "version": "1.0.22",
+    "mode": "run-custom-build",
+    "target": " build-script (run)",
+    "features": [],
+    "start": 40.95,
+    "duration": 0.19,
+    "unblocked_units": [
+      99
+    ],
+    "unblocked_rmeta_units": [],
+    "sections": null
+  },
+  {
+    "i": 73,
+    "name": "parking_lot",
+    "version": "0.12.5",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "default"
+    ],
+    "start": 41.18,
+    "duration": 4.33,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 3.08
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 3.08,
+          "end": 4.33
+        }
+      ]
+    ]
+  },
+  {
+    "i": 126,
+    "name": "thiserror",
+    "version": "2.0.18",
+    "mode": "todo",
+    "target": " build-script",
+    "features": [
+      "std"
+    ],
+    "start": 43.5,
+    "duration": 1.44,
+    "unblocked_units": [
+      127
+    ],
+    "unblocked_rmeta_units": [],
+    "sections": null
+  },
+  {
+    "i": 47,
+    "name": "ident_case",
+    "version": "1.0.1",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 44.97,
+    "duration": 0.32,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      27
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.26
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.26,
+          "end": 0.32
+        }
+      ]
+    ]
+  },
+  {
+    "i": 134,
+    "name": "unicode-width",
+    "version": "0.2.2",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "cjk",
+      "default"
+    ],
+    "start": 45.3,
+    "duration": 0.76,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      41
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.66
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.66,
+          "end": 0.76
+        }
+      ]
+    ]
+  },
+  {
+    "i": 27,
+    "name": "darling_core",
+    "version": "0.23.0",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "strsim",
+      "suggestions"
+    ],
+    "start": 45.51,
+    "duration": 17.16,
+    "unblocked_units": [
+      28
+    ],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 9.85
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 9.85,
+          "end": 17.16
+        }
+      ]
+    ]
+  },
+  {
+    "i": 127,
+    "name": "thiserror",
+    "version": "2.0.18",
+    "mode": "run-custom-build",
+    "target": " build-script (run)",
+    "features": [
+      "std"
+    ],
+    "start": 46.07,
+    "duration": 0.2,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": null
+  },
+  {
+    "i": 80,
+    "name": "phf_macros",
+    "version": "0.13.1",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 46.32,
+    "duration": 4.2,
+    "unblocked_units": [
+      77
+    ],
+    "unblocked_rmeta_units": [],
+    "sections": null
+  },
+  {
+    "i": 128,
+    "name": "thiserror-impl",
+    "version": "2.0.18",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 50.52,
+    "duration": 6.51,
+    "unblocked_units": [
+      125
+    ],
+    "unblocked_rmeta_units": [],
+    "sections": null
+  },
+  {
+    "i": 99,
+    "name": "rustversion",
+    "version": "1.0.22",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 57.04,
+    "duration": 2.61,
+    "unblocked_units": [
+      12
+    ],
+    "unblocked_rmeta_units": [],
+    "sections": null
+  },
+  {
+    "i": 21,
+    "name": "convert_case",
+    "version": "0.10.0",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 59.65,
+    "duration": 1.2,
+    "unblocked_units": [
+      31
+    ],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.68
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.68,
+          "end": 1.2
+        }
+      ]
+    ]
+  },
+  {
+    "i": 67,
+    "name": "new_debug_unreachable",
+    "version": "1.0.6",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 60.85,
+    "duration": 0.13,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.1
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.1,
+          "end": 0.13
+        }
+      ]
+    ]
+  },
+  {
+    "i": 36,
+    "name": "either",
+    "version": "1.16.0",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "std",
+      "use_std"
+    ],
+    "start": 60.98,
+    "duration": 1.07,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      53
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 1.02
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 1.02,
+          "end": 1.07
+        }
+      ]
+    ]
+  },
+  {
+    "i": 53,
+    "name": "itertools",
+    "version": "0.14.0",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "use_alloc",
+      "use_std"
+    ],
+    "start": 62.05,
+    "duration": 10.62,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      133
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 10.23
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 10.23,
+          "end": 10.62
+        }
+      ]
+    ]
+  },
+  {
+    "i": 28,
+    "name": "darling_macro",
+    "version": "0.23.0",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 62.69,
+    "duration": 1.5,
+    "unblocked_units": [
+      26
+    ],
+    "unblocked_rmeta_units": [],
+    "sections": null
+  },
+  {
+    "i": 31,
+    "name": "derive_more-impl",
+    "version": "2.1.1",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "add",
+      "add_assign",
+      "default",
+      "is_variant"
+    ],
+    "start": 64.19,
+    "duration": 8.1,
+    "unblocked_units": [
+      30
+    ],
+    "unblocked_rmeta_units": [],
+    "sections": null
+  },
+  {
+    "i": 12,
+    "name": "castaway",
+    "version": "0.2.4",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "alloc"
+    ],
+    "start": 72.29,
+    "duration": 0.53,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.48
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.48,
+          "end": 0.53
+        }
+      ]
+    ]
+  },
+  {
+    "i": 125,
+    "name": "thiserror",
+    "version": "2.0.18",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "std"
+    ],
+    "start": 72.68,
+    "duration": 0.25,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.21
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.21,
+          "end": 0.25
+        }
+      ]
+    ]
+  },
+  {
+    "i": 77,
+    "name": "phf",
+    "version": "0.13.1",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "default",
+      "macros",
+      "phf_macros",
+      "std"
+    ],
+    "start": 72.82,
+    "duration": 0.67,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.6
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.6,
+          "end": 0.67
+        }
+      ]
+    ]
+  },
+  {
+    "i": 122,
+    "name": "strum_macros",
+    "version": "0.28.0",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 72.96,
+    "duration": 11.29,
+    "unblocked_units": [
+      121
+    ],
+    "unblocked_rmeta_units": [],
+    "sections": null
+  },
+  {
+    "i": 42,
+    "name": "hashbrown",
+    "version": "0.16.1",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "allocator-api2",
+      "default",
+      "default-hasher",
+      "equivalent",
+      "inline-more",
+      "raw-entry"
+    ],
+    "start": 73.5,
+    "duration": 3.74,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      55
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 3.47
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 3.47,
+          "end": 3.74
+        }
+      ]
+    ]
+  },
+  {
+    "i": 43,
+    "name": "hashbrown",
+    "version": "0.17.1",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "allocator-api2",
+      "default",
+      "default-hasher",
+      "equivalent",
+      "inline-more",
+      "raw-entry"
+    ],
+    "start": 77.25,
+    "duration": 3.75,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      64
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 3.58
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 3.58,
+          "end": 3.75
+        }
+      ]
+    ]
+  },
+  {
+    "i": 119,
+    "name": "string_cache_codegen",
+    "version": "0.6.1",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 81.01,
+    "duration": 1.96,
+    "unblocked_units": [
+      138
+    ],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 1.03
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 1.03,
+          "end": 1.96
+        }
+      ]
+    ]
+  },
+  {
+    "i": 38,
+    "name": "errno",
+    "version": "0.3.14",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "default",
+      "std"
+    ],
+    "start": 82.97,
+    "duration": 0.96,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      113
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.37
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.37,
+          "end": 0.96
+        }
+      ]
+    ]
+  },
+  {
+    "i": 110,
+    "name": "signal-hook",
+    "version": "0.3.18",
+    "mode": "todo",
+    "target": " build-script",
+    "features": [
+      "channel",
+      "default",
+      "iterator"
+    ],
+    "start": 84.25,
+    "duration": 0.54,
+    "unblocked_units": [
+      111
+    ],
+    "unblocked_rmeta_units": [],
+    "sections": null
+  },
+  {
+    "i": 51,
+    "name": "instability",
+    "version": "0.3.12",
+    "mode": "todo",
+    "target": " build-script",
+    "features": [],
+    "start": 84.25,
+    "duration": 0.6,
+    "unblocked_units": [
+      50
+    ],
+    "unblocked_rmeta_units": [],
+    "sections": null
+  },
+  {
+    "i": 102,
+    "name": "ryu",
+    "version": "1.0.23",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 84.8,
+    "duration": 1.02,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      20
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.75
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.75,
+          "end": 1.02
+        }
+      ]
+    ]
+  },
+  {
+    "i": 117,
+    "name": "static_assertions",
+    "version": "1.1.0",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 84.85,
+    "duration": 0.18,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.14
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.14,
+          "end": 0.18
+        }
+      ]
+    ]
+  },
+  {
+    "i": 83,
+    "name": "precomputed-hash",
+    "version": "0.1.1",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 85.04,
+    "duration": 0.16,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      118
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.13
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.13,
+          "end": 0.16
+        }
+      ]
+    ]
+  },
+  {
+    "i": 50,
+    "name": "instability",
+    "version": "0.3.12",
+    "mode": "run-custom-build",
+    "target": " build-script (run)",
+    "features": [],
+    "start": 85.2,
+    "duration": 0.08,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": null
+  },
+  {
+    "i": 111,
+    "name": "signal-hook",
+    "version": "0.3.18",
+    "mode": "run-custom-build",
+    "target": " build-script (run)",
+    "features": [
+      "channel",
+      "default",
+      "iterator"
+    ],
+    "start": 85.29,
+    "duration": 0.02,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": null
+  },
+  {
+    "i": 121,
+    "name": "strum",
+    "version": "0.28.0",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "derive",
+      "std",
+      "strum_macros"
+    ],
+    "start": 85.32,
+    "duration": 0.43,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.33
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.33,
+          "end": 0.43
+        }
+      ]
+    ]
+  },
+  {
+    "i": 20,
+    "name": "compact_str",
+    "version": "0.9.1",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "std"
+    ],
+    "start": 85.76,
+    "duration": 4.06,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 2.85
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 2.85,
+          "end": 4.06
+        }
+      ]
+    ]
+  },
+  {
+    "i": 113,
+    "name": "signal-hook-registry",
+    "version": "1.4.8",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 85.87,
+    "duration": 1.7,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      109
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.88
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.88,
+          "end": 1.7
+        }
+      ]
+    ]
+  },
+  {
+    "i": 138,
+    "name": "web_atoms",
+    "version": "0.2.5",
+    "mode": "todo",
+    "target": " build-script",
+    "features": [],
+    "start": 87.57,
+    "duration": 2.18,
+    "unblocked_units": [
+      139
+    ],
+    "unblocked_rmeta_units": [],
+    "sections": null
+  },
+  {
+    "i": 64,
+    "name": "lru",
+    "version": "0.18.0",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "default",
+      "hashbrown"
+    ],
+    "start": 89.76,
+    "duration": 0.83,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.74
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.74,
+          "end": 0.83
+        }
+      ]
+    ]
+  },
+  {
+    "i": 55,
+    "name": "kasuari",
+    "version": "0.4.12",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "std"
+    ],
+    "start": 89.83,
+    "duration": 4.27,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 2.01
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 2.01,
+          "end": 4.27
+        }
+      ]
+    ]
+  },
+  {
+    "i": 30,
+    "name": "derive_more",
+    "version": "2.1.1",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "add",
+      "add_assign",
+      "default",
+      "is_variant",
+      "std"
+    ],
+    "start": 90.59,
+    "duration": 0.37,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.28
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.28,
+          "end": 0.37
+        }
+      ]
+    ]
+  },
+  {
+    "i": 133,
+    "name": "unicode-truncate",
+    "version": "2.0.1",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "std"
+    ],
+    "start": 90.99,
+    "duration": 0.73,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.68
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.68,
+          "end": 0.73
+        }
+      ]
+    ]
+  },
+  {
+    "i": 26,
+    "name": "darling",
+    "version": "0.23.0",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "default",
+      "suggestions"
+    ],
+    "start": 91.72,
+    "duration": 0.3,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.26
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.26,
+          "end": 0.3
+        }
+      ]
+    ]
+  },
+  {
+    "i": 97,
+    "name": "rustix",
+    "version": "1.1.4",
+    "mode": "todo",
+    "target": " build-script",
+    "features": [
+      "alloc",
+      "std",
+      "stdio",
+      "termios"
+    ],
+    "start": 92.03,
+    "duration": 1.59,
+    "unblocked_units": [
+      98
+    ],
+    "unblocked_rmeta_units": [],
+    "sections": null
+  },
+  {
+    "i": 22,
+    "name": "critical-section",
+    "version": "1.2.0",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 93.63,
+    "duration": 0.45,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      91
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.41
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.41,
+          "end": 0.45
+        }
+      ]
+    ]
+  },
+  {
+    "i": 48,
+    "name": "indoc",
+    "version": "2.0.7",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 94.09,
+    "duration": 1.97,
+    "unblocked_units": [
+      49
+    ],
+    "unblocked_rmeta_units": [],
+    "sections": null
+  },
+  {
+    "i": 91,
+    "name": "ratatui-core",
+    "version": "0.1.2",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "default",
+      "layout-cache",
+      "std",
+      "underline-color"
+    ],
+    "start": 94.11,
+    "duration": 12.64,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 6.49
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 6.49,
+          "end": 12.64
+        }
+      ]
+    ]
+  },
+  {
+    "i": 49,
+    "name": "instability",
+    "version": "0.3.12",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 96.06,
+    "duration": 2.84,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": null
+  },
+  {
+    "i": 98,
+    "name": "rustix",
+    "version": "1.1.4",
+    "mode": "run-custom-build",
+    "target": " build-script (run)",
+    "features": [
+      "alloc",
+      "std",
+      "stdio",
+      "termios"
+    ],
+    "start": 99.03,
+    "duration": 0.69,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": null
+  },
+  {
+    "i": 139,
+    "name": "web_atoms",
+    "version": "0.2.5",
+    "mode": "run-custom-build",
+    "target": " build-script (run)",
+    "features": [],
+    "start": 99.73,
+    "duration": 1.7,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": null
+  },
+  {
+    "i": 109,
+    "name": "signal-hook",
+    "version": "0.3.18",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "channel",
+      "default",
+      "iterator"
+    ],
+    "start": 101.44,
+    "duration": 2.4,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 1.45
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 1.45,
+          "end": 2.4
+        }
+      ]
+    ]
+  },
+  {
+    "i": 118,
+    "name": "string_cache",
+    "version": "0.9.0",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 103.85,
+    "duration": 1.22,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      137
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.92
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.92,
+          "end": 1.22
+        }
+      ]
+    ]
+  },
+  {
+    "i": 66,
+    "name": "mio",
+    "version": "1.2.1",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "default",
+      "log",
+      "net",
+      "os-ext",
+      "os-poll"
+    ],
+    "start": 105.08,
+    "duration": 3.49,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      112
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 2.15
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 2.15,
+          "end": 3.49
+        }
+      ]
+    ]
+  },
+  {
+    "i": 33,
+    "name": "dtoa",
+    "version": "1.0.11",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 106.76,
+    "duration": 0.51,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      34
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.43
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.43,
+          "end": 0.51
+        }
+      ]
+    ]
+  },
+  {
+    "i": 72,
+    "name": "num_threads",
+    "version": "0.1.7",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 107.28,
+    "duration": 0.68,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.36
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.36,
+          "end": 0.68
+        }
+      ]
+    ]
+  },
+  {
+    "i": 29,
+    "name": "deranged",
+    "version": "0.5.8",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "default"
+    ],
+    "start": 107.97,
+    "duration": 6.63,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      129
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 6.5
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 6.5,
+          "end": 6.63
+        }
+      ]
+    ]
+  },
+  {
+    "i": 68,
+    "name": "num-conv",
+    "version": "0.2.2",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 108.58,
+    "duration": 0.55,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.5
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.5,
+          "end": 0.55
+        }
+      ]
+    ]
+  },
+  {
+    "i": 61,
+    "name": "litrs",
+    "version": "1.0.0",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 109.13,
+    "duration": 2.86,
+    "unblocked_units": [
+      32
+    ],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 1.92
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 1.92,
+          "end": 2.86
+        }
+      ]
+    ]
+  },
+  {
+    "i": 135,
+    "name": "utf-8",
+    "version": "0.7.6",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 112.0,
+    "duration": 0.64,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      124
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.42
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.42,
+          "end": 0.64
+        }
+      ]
+    ]
+  },
+  {
+    "i": 130,
+    "name": "time-core",
+    "version": "0.1.9",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 112.66,
+    "duration": 0.86,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.8
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.8,
+          "end": 0.86
+        }
+      ]
+    ]
+  },
+  {
+    "i": 82,
+    "name": "powerfmt",
+    "version": "0.2.0",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 113.52,
+    "duration": 0.9,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.63
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.63,
+          "end": 0.9
+        }
+      ]
+    ]
+  },
+  {
+    "i": 136,
+    "name": "utf8parse",
+    "version": "0.2.2",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "default"
+    ],
+    "start": 114.42,
+    "duration": 0.26,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      3
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.2
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.2,
+          "end": 0.26
+        }
+      ]
+    ]
+  },
+  {
+    "i": 60,
+    "name": "linux-raw-sys",
+    "version": "0.12.1",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "auxvec",
+      "elf",
+      "errno",
+      "general",
+      "ioctl",
+      "no_std"
+    ],
+    "start": 114.61,
+    "duration": 2.05,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      96
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 1.96
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 1.96,
+          "end": 2.05
+        }
+      ]
+    ]
+  },
+  {
+    "i": 8,
+    "name": "autocfg",
+    "version": "1.5.1",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 114.69,
+    "duration": 1.84,
+    "unblocked_units": [
+      70
+    ],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.97
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.97,
+          "end": 1.84
+        }
+      ]
+    ]
+  },
+  {
+    "i": 70,
+    "name": "num-traits",
+    "version": "0.2.19",
+    "mode": "todo",
+    "target": " build-script",
+    "features": [],
+    "start": 116.55,
+    "duration": 1.41,
+    "unblocked_units": [
+      71
+    ],
+    "unblocked_rmeta_units": [],
+    "sections": null
+  },
+  {
+    "i": 96,
+    "name": "rustix",
+    "version": "1.1.4",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "alloc",
+      "std",
+      "stdio",
+      "termios"
+    ],
+    "start": 116.67,
+    "duration": 5.62,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 4.3
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 4.3,
+          "end": 5.62
+        }
+      ]
+    ]
+  },
+  {
+    "i": 3,
+    "name": "anstyle-parse",
+    "version": "1.0.0",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "default",
+      "utf8"
+    ],
+    "start": 117.97,
+    "duration": 0.68,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.49
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.49,
+          "end": 0.68
+        }
+      ]
+    ]
+  },
+  {
+    "i": 129,
+    "name": "time",
+    "version": "0.3.49",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "alloc",
+      "local-offset",
+      "std"
+    ],
+    "start": 118.68,
+    "duration": 4.0,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 3.75
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 3.75,
+          "end": 4.0
+        }
+      ]
+    ]
+  },
+  {
+    "i": 124,
+    "name": "tendril",
+    "version": "0.5.0",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 122.29,
+    "duration": 1.56,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 1.47
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 1.47,
+          "end": 1.56
+        }
+      ]
+    ]
+  },
+  {
+    "i": 32,
+    "name": "document-features",
+    "version": "0.2.12",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "default"
+    ],
+    "start": 122.68,
+    "duration": 2.53,
+    "unblocked_units": [
+      23
+    ],
+    "unblocked_rmeta_units": [],
+    "sections": null
+  },
+  {
+    "i": 112,
+    "name": "signal-hook-mio",
+    "version": "0.2.5",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "mio-1_0",
+      "support-v1_0"
+    ],
+    "start": 123.89,
+    "duration": 0.41,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.33
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.33,
+          "end": 0.41
+        }
+      ]
+    ]
+  },
+  {
+    "i": 34,
+    "name": "dtoa-short",
+    "version": "0.3.5",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 124.3,
+    "duration": 0.35,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.25
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.25,
+          "end": 0.35
+        }
+      ]
+    ]
+  },
+  {
+    "i": 137,
+    "name": "web_atoms",
+    "version": "0.2.5",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 124.65,
+    "duration": 3.85,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      65
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 3.44
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 3.44,
+          "end": 3.85
+        }
+      ]
+    ]
+  },
+  {
+    "i": 25,
+    "name": "cssparser-macros",
+    "version": "0.7.0",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 125.21,
+    "duration": 1.74,
+    "unblocked_units": [
+      24
+    ],
+    "unblocked_rmeta_units": [],
+    "sections": null
+  },
+  {
+    "i": 106,
+    "name": "selectors",
+    "version": "0.38.0",
+    "mode": "todo",
+    "target": " build-script",
+    "features": [],
+    "start": 126.97,
+    "duration": 1.64,
+    "unblocked_units": [
+      107
+    ],
+    "unblocked_rmeta_units": [],
+    "sections": null
+  },
+  {
+    "i": 59,
+    "name": "line-clipping",
+    "version": "0.3.7",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 128.52,
+    "duration": 1.18,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      94
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.81
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.81,
+          "end": 1.18
+        }
+      ]
+    ]
+  },
+  {
+    "i": 2,
+    "name": "anstyle",
+    "version": "1.0.14",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "default",
+      "std"
+    ],
+    "start": 128.62,
+    "duration": 1.23,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.98
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.98,
+          "end": 1.23
+        }
+      ]
+    ]
+  },
+  {
+    "i": 52,
+    "name": "is_terminal_polyfill",
+    "version": "1.70.2",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "default"
+    ],
+    "start": 129.7,
+    "duration": 0.24,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.19
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.19,
+          "end": 0.24
+        }
+      ]
+    ]
+  },
+  {
+    "i": 116,
+    "name": "stable_deref_trait",
+    "version": "1.2.1",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "alloc",
+      "default",
+      "std"
+    ],
+    "start": 129.85,
+    "duration": 0.18,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      108
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.15
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.15,
+          "end": 0.18
+        }
+      ]
+    ]
+  },
+  {
+    "i": 19,
+    "name": "colorchoice",
+    "version": "1.0.5",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 129.94,
+    "duration": 0.25,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.18
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.18,
+          "end": 0.25
+        }
+      ]
+    ]
+  },
+  {
+    "i": 4,
+    "name": "anstyle-query",
+    "version": "1.1.5",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 130.04,
+    "duration": 0.25,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      1
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.19
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.19,
+          "end": 0.25
+        }
+      ]
+    ]
+  },
+  {
+    "i": 108,
+    "name": "servo_arc",
+    "version": "0.4.3",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "default",
+      "track_alloc_size"
+    ],
+    "start": 130.2,
+    "duration": 0.65,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.59
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.59,
+          "end": 0.65
+        }
+      ]
+    ]
+  },
+  {
+    "i": 1,
+    "name": "anstream",
+    "version": "1.0.0",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "auto",
+      "default",
+      "wincon"
+    ],
+    "start": 130.29,
+    "duration": 1.57,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 1.04
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 1.04,
+          "end": 1.57
+        }
+      ]
+    ]
+  },
+  {
+    "i": 94,
+    "name": "ratatui-widgets",
+    "version": "0.3.2",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "calendar",
+      "std"
+    ],
+    "start": 130.85,
+    "duration": 14.45,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      93
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 7.45
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 7.45,
+          "end": 14.45
+        }
+      ]
+    ]
+  },
+  {
+    "i": 107,
+    "name": "selectors",
+    "version": "0.38.0",
+    "mode": "run-custom-build",
+    "target": " build-script (run)",
+    "features": [],
+    "start": 131.94,
+    "duration": 0.02,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": null
+  },
+  {
+    "i": 65,
+    "name": "markup5ever",
+    "version": "0.39.0",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 131.96,
+    "duration": 1.15,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      45
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.7
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.7,
+          "end": 1.15
+        }
+      ]
+    ]
+  },
+  {
+    "i": 24,
+    "name": "cssparser",
+    "version": "0.37.0",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "default",
+      "fast_match_byte",
+      "fast_match_color"
+    ],
+    "start": 133.13,
+    "duration": 4.79,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 3.42
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 3.42,
+          "end": 4.79
+        }
+      ]
+    ]
+  },
+  {
+    "i": 23,
+    "name": "crossterm",
+    "version": "0.29.0",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "bracketed-paste",
+      "default",
+      "derive-more",
+      "events",
+      "windows"
+    ],
+    "start": 137.92,
+    "duration": 8.82,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      92
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 5.38
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 5.38,
+          "end": 8.82
+        }
+      ]
+    ]
+  },
+  {
+    "i": 71,
+    "name": "num-traits",
+    "version": "0.2.19",
+    "mode": "run-custom-build",
+    "target": " build-script (run)",
+    "features": [],
+    "start": 145.31,
+    "duration": 0.65,
+    "unblocked_units": [
+      69
+    ],
+    "unblocked_rmeta_units": [],
+    "sections": null
+  },
+  {
+    "i": 6,
+    "name": "anyhow",
+    "version": "1.0.102",
+    "mode": "todo",
+    "target": " build-script",
+    "features": [
+      "default",
+      "std"
+    ],
+    "start": 145.98,
+    "duration": 2.35,
+    "unblocked_units": [
+      7
+    ],
+    "unblocked_rmeta_units": [],
+    "sections": null
+  },
+  {
+    "i": 18,
+    "name": "clap_lex",
+    "version": "1.1.0",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 146.75,
+    "duration": 1.05,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      16
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.54
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.54,
+          "end": 1.05
+        }
+      ]
+    ]
+  },
+  {
+    "i": 95,
+    "name": "rustc-hash",
+    "version": "2.1.2",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "default",
+      "std"
+    ],
+    "start": 147.81,
+    "duration": 0.62,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      105
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.55
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.55,
+          "end": 0.62
+        }
+      ]
+    ]
+  },
+  {
+    "i": 7,
+    "name": "anyhow",
+    "version": "1.0.102",
+    "mode": "run-custom-build",
+    "target": " build-script (run)",
+    "features": [
+      "default",
+      "std"
+    ],
+    "start": 148.32,
+    "duration": 0.37,
+    "unblocked_units": [
+      5
+    ],
+    "unblocked_rmeta_units": [],
+    "sections": null
+  },
+  {
+    "i": 105,
+    "name": "selectors",
+    "version": "0.38.0",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 148.44,
+    "duration": 7.38,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 5.64
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 5.64,
+          "end": 7.38
+        }
+      ]
+    ]
+  },
+  {
+    "i": 16,
+    "name": "clap_builder",
+    "version": "4.6.0",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "color",
+      "error-context",
+      "help",
+      "std",
+      "suggestions",
+      "usage"
+    ],
+    "start": 148.7,
+    "duration": 28.61,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 13.09
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 13.09,
+          "end": 28.61
+        }
+      ]
+    ]
+  },
+  {
+    "i": 69,
+    "name": "num-traits",
+    "version": "0.2.19",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 155.82,
+    "duration": 5.47,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 4.6
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 4.6,
+          "end": 5.47
+        }
+      ]
+    ]
+  },
+  {
+    "i": 92,
+    "name": "ratatui-crossterm",
+    "version": "0.1.2",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "crossterm_0_29",
+      "default",
+      "underline-color"
+    ],
+    "start": 161.33,
+    "duration": 2.25,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 1.96
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 1.96,
+          "end": 2.25
+        }
+      ]
+    ]
+  },
+  {
+    "i": 93,
+    "name": "ratatui-macros",
+    "version": "0.7.2",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 163.59,
+    "duration": 0.75,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      90
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.57
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.57,
+          "end": 0.75
+        }
+      ]
+    ]
+  },
+  {
+    "i": 45,
+    "name": "html5ever",
+    "version": "0.39.0",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 164.35,
+    "duration": 9.02,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 7.85
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 7.85,
+          "end": 9.02
+        }
+      ]
+    ]
+  },
+  {
+    "i": 41,
+    "name": "getopts",
+    "version": "0.2.24",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "default",
+      "unicode"
+    ],
+    "start": 173.37,
+    "duration": 2.76,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 1.29
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 1.29,
+          "end": 2.76
+        }
+      ]
+    ]
+  },
+  {
+    "i": 17,
+    "name": "clap_derive",
+    "version": "4.6.1",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "default"
+    ],
+    "start": 176.15,
+    "duration": 14.0,
+    "unblocked_units": [
+      15
+    ],
+    "unblocked_rmeta_units": [],
+    "sections": null
+  },
+  {
+    "i": 35,
+    "name": "ego-tree",
+    "version": "0.11.0",
+    "mode": "todo",
+    "target": "",
+    "features": [],
+    "start": 177.31,
+    "duration": 1.95,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      104
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 1.79
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 1.79,
+          "end": 1.95
+        }
+      ]
+    ]
+  },
+  {
+    "i": 46,
+    "name": "iana-time-zone",
+    "version": "0.1.65",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "fallback"
+    ],
+    "start": 179.27,
+    "duration": 1.24,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      14
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.54
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.54,
+          "end": 1.24
+        }
+      ]
+    ]
+  },
+  {
+    "i": 14,
+    "name": "chrono",
+    "version": "0.4.45",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "alloc",
+      "clock",
+      "default",
+      "iana-time-zone",
+      "js-sys",
+      "now",
+      "oldtime",
+      "std",
+      "wasm-bindgen",
+      "wasmbind",
+      "winapi",
+      "windows-link"
+    ],
+    "start": 180.52,
+    "duration": 13.78,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 7.52
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 7.52,
+          "end": 13.78
+        }
+      ]
+    ]
+  },
+  {
+    "i": 15,
+    "name": "clap",
+    "version": "4.6.1",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "color",
+      "default",
+      "derive",
+      "error-context",
+      "help",
+      "std",
+      "suggestions",
+      "usage"
+    ],
+    "start": 190.15,
+    "duration": 0.3,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 0.26
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 0.26,
+          "end": 0.3
+        }
+      ]
+    ]
+  },
+  {
+    "i": 104,
+    "name": "scraper",
+    "version": "0.27.0",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "default",
+      "errors",
+      "main"
+    ],
+    "start": 190.45,
+    "duration": 15.05,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 4.99
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 4.99,
+          "end": 15.05
+        }
+      ]
+    ]
+  },
+  {
+    "i": 90,
+    "name": "ratatui",
+    "version": "0.30.2",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "all-widgets",
+      "crossterm",
+      "default",
+      "layout-cache",
+      "macros",
+      "std",
+      "underline-color",
+      "widget-calendar"
+    ],
+    "start": 194.3,
+    "duration": 2.44,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 1.85
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 1.85,
+          "end": 2.44
+        }
+      ]
+    ]
+  },
+  {
+    "i": 5,
+    "name": "anyhow",
+    "version": "1.0.102",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "default",
+      "std"
+    ],
+    "start": 196.75,
+    "duration": 2.68,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [
+      10
+    ],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 1.74
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 1.74,
+          "end": 2.68
+        }
+      ]
+    ]
+  },
+  {
+    "i": 10,
+    "name": "cargo-timings",
+    "version": "1.0.0",
+    "mode": "todo",
+    "target": "",
+    "features": [
+      "default",
+      "tui",
+      "unicode-segmentation"
+    ],
+    "start": 199.58,
+    "duration": 8.43,
+    "unblocked_units": [
+      11
+    ],
+    "unblocked_rmeta_units": [],
+    "sections": [
+      [
+        "frontend",
+        {
+          "start": 0.0,
+          "end": 3.18
+        }
+      ],
+      [
+        "codegen",
+        {
+          "start": 3.18,
+          "end": 8.43
+        }
+      ]
+    ]
+  },
+  {
+    "i": 11,
+    "name": "cargo-timings",
+    "version": "1.0.0",
+    "mode": "todo",
+    "target": " cargo-timings \"bin\"",
+    "features": [
+      "default",
+      "tui",
+      "unicode-segmentation"
+    ],
+    "start": 208.01,
+    "duration": 12.46,
+    "unblocked_units": [],
+    "unblocked_rmeta_units": [],
+    "sections": null
+  }
+];
+const CONCURRENCY_DATA = [
+  {
+    "t": 3.01,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 139
+  },
+  {
+    "t": 3.03,
+    "active": 2,
+    "waiting": 0,
+    "inactive": 138
+  },
+  {
+    "t": 6.59,
+    "active": 1,
+    "waiting": 1,
+    "inactive": 137
+  },
+  {
+    "t": 6.6,
+    "active": 2,
+    "waiting": 1,
+    "inactive": 135
+  },
+  {
+    "t": 7.0,
+    "active": 2,
+    "waiting": 1,
+    "inactive": 134
+  },
+  {
+    "t": 7.14,
+    "active": 1,
+    "waiting": 1,
+    "inactive": 134
+  },
+  {
+    "t": 7.16,
+    "active": 2,
+    "waiting": 0,
+    "inactive": 134
+  },
+  {
+    "t": 7.24,
+    "active": 2,
+    "waiting": 0,
+    "inactive": 133
+  },
+  {
+    "t": 8.65,
+    "active": 1,
+    "waiting": 1,
+    "inactive": 132
+  },
+  {
+    "t": 8.66,
+    "active": 2,
+    "waiting": 0,
+    "inactive": 132
+  },
+  {
+    "t": 8.76,
+    "active": 1,
+    "waiting": 1,
+    "inactive": 131
+  },
+  {
+    "t": 8.77,
+    "active": 2,
+    "waiting": 0,
+    "inactive": 131
+  },
+  {
+    "t": 9.34,
+    "active": 2,
+    "waiting": 1,
+    "inactive": 130
+  },
+  {
+    "t": 10.58,
+    "active": 1,
+    "waiting": 1,
+    "inactive": 130
+  },
+  {
+    "t": 10.59,
+    "active": 2,
+    "waiting": 0,
+    "inactive": 130
+  },
+  {
+    "t": 11.43,
+    "active": 2,
+    "waiting": 1,
+    "inactive": 129
+  },
+  {
+    "t": 11.77,
+    "active": 1,
+    "waiting": 1,
+    "inactive": 129
+  },
+  {
+    "t": 11.78,
+    "active": 2,
+    "waiting": 0,
+    "inactive": 129
+  },
+  {
+    "t": 13.98,
+    "active": 2,
+    "waiting": 1,
+    "inactive": 128
+  },
+  {
+    "t": 14.17,
+    "active": 1,
+    "waiting": 1,
+    "inactive": 128
+  },
+  {
+    "t": 14.18,
+    "active": 2,
+    "waiting": 1,
+    "inactive": 127
+  },
+  {
+    "t": 15.11,
+    "active": 2,
+    "waiting": 2,
+    "inactive": 126
+  },
+  {
+    "t": 15.25,
+    "active": 1,
+    "waiting": 2,
+    "inactive": 126
+  },
+  {
+    "t": 15.26,
+    "active": 2,
+    "waiting": 1,
+    "inactive": 126
+  },
+  {
+    "t": 16.55,
+    "active": 1,
+    "waiting": 1,
+    "inactive": 126
+  },
+  {
+    "t": 16.56,
+    "active": 2,
+    "waiting": 1,
+    "inactive": 125
+  },
+  {
+    "t": 17.09,
+    "active": 2,
+    "waiting": 2,
+    "inactive": 124
+  },
+  {
+    "t": 17.15,
+    "active": 2,
+    "waiting": 1,
+    "inactive": 124
+  },
+  {
+    "t": 17.639999999999997,
+    "active": 2,
+    "waiting": 3,
+    "inactive": 122
+  },
+  {
+    "t": 17.93,
+    "active": 1,
+    "waiting": 3,
+    "inactive": 122
+  },
+  {
+    "t": 17.94,
+    "active": 2,
+    "waiting": 3,
+    "inactive": 121
+  },
+  {
+    "t": 18.110000000000003,
+    "active": 1,
+    "waiting": 3,
+    "inactive": 121
+  },
+  {
+    "t": 18.12,
+    "active": 2,
+    "waiting": 3,
+    "inactive": 120
+  },
+  {
+    "t": 19.09,
+    "active": 1,
+    "waiting": 3,
+    "inactive": 120
+  },
+  {
+    "t": 19.11,
+    "active": 2,
+    "waiting": 3,
+    "inactive": 119
+  },
+  {
+    "t": 20.599999999999998,
+    "active": 2,
+    "waiting": 4,
+    "inactive": 118
+  },
+  {
+    "t": 21.05,
+    "active": 1,
+    "waiting": 4,
+    "inactive": 118
+  },
+  {
+    "t": 21.07,
+    "active": 2,
+    "waiting": 4,
+    "inactive": 117
+  },
+  {
+    "t": 21.85,
+    "active": 1,
+    "waiting": 5,
+    "inactive": 116
+  },
+  {
+    "t": 21.87,
+    "active": 2,
+    "waiting": 4,
+    "inactive": 116
+  },
+  {
+    "t": 21.89,
+    "active": 2,
+    "waiting": 5,
+    "inactive": 114
+  },
+  {
+    "t": 23.94,
+    "active": 2,
+    "waiting": 5,
+    "inactive": 113
+  },
+  {
+    "t": 24.66,
+    "active": 2,
+    "waiting": 6,
+    "inactive": 112
+  },
+  {
+    "t": 25.0,
+    "active": 1,
+    "waiting": 6,
+    "inactive": 112
+  },
+  {
+    "t": 25.01,
+    "active": 2,
+    "waiting": 6,
+    "inactive": 111
+  },
+  {
+    "t": 25.19,
+    "active": 2,
+    "waiting": 7,
+    "inactive": 110
+  },
+  {
+    "t": 25.240000000000002,
+    "active": 1,
+    "waiting": 7,
+    "inactive": 110
+  },
+  {
+    "t": 25.25,
+    "active": 2,
+    "waiting": 6,
+    "inactive": 110
+  },
+  {
+    "t": 26.43,
+    "active": 2,
+    "waiting": 5,
+    "inactive": 110
+  },
+  {
+    "t": 27.27,
+    "active": 2,
+    "waiting": 6,
+    "inactive": 109
+  },
+  {
+    "t": 27.71,
+    "active": 1,
+    "waiting": 6,
+    "inactive": 109
+  },
+  {
+    "t": 27.73,
+    "active": 2,
+    "waiting": 5,
+    "inactive": 109
+  },
+  {
+    "t": 28.150000000000002,
+    "active": 1,
+    "waiting": 6,
+    "inactive": 108
+  },
+  {
+    "t": 28.16,
+    "active": 2,
+    "waiting": 6,
+    "inactive": 107
+  },
+  {
+    "t": 28.45,
+    "active": 2,
+    "waiting": 6,
+    "inactive": 106
+  },
+  {
+    "t": 29.509999999999998,
+    "active": 1,
+    "waiting": 6,
+    "inactive": 106
+  },
+  {
+    "t": 29.53,
+    "active": 2,
+    "waiting": 6,
+    "inactive": 105
+  },
+  {
+    "t": 30.310000000000002,
+    "active": 2,
+    "waiting": 7,
+    "inactive": 104
+  },
+  {
+    "t": 30.490000000000002,
+    "active": 1,
+    "waiting": 7,
+    "inactive": 104
+  },
+  {
+    "t": 30.53,
+    "active": 2,
+    "waiting": 7,
+    "inactive": 103
+  },
+  {
+    "t": 31.34,
+    "active": 1,
+    "waiting": 7,
+    "inactive": 103
+  },
+  {
+    "t": 31.35,
+    "active": 2,
+    "waiting": 7,
+    "inactive": 102
+  },
+  {
+    "t": 33.7,
+    "active": 2,
+    "waiting": 9,
+    "inactive": 100
+  },
+  {
+    "t": 33.82,
+    "active": 1,
+    "waiting": 9,
+    "inactive": 100
+  },
+  {
+    "t": 33.83,
+    "active": 2,
+    "waiting": 9,
+    "inactive": 99
+  },
+  {
+    "t": 37.519999999999996,
+    "active": 1,
+    "waiting": 10,
+    "inactive": 98
+  },
+  {
+    "t": 37.52,
+    "active": 2,
+    "waiting": 10,
+    "inactive": 97
+  },
+  {
+    "t": 40.790000000000006,
+    "active": 1,
+    "waiting": 10,
+    "inactive": 97
+  },
+  {
+    "t": 40.95,
+    "active": 2,
+    "waiting": 9,
+    "inactive": 97
+  },
+  {
+    "t": 41.14,
+    "active": 1,
+    "waiting": 10,
+    "inactive": 96
+  },
+  {
+    "t": 41.18,
+    "active": 2,
+    "waiting": 9,
+    "inactive": 96
+  },
+  {
+    "t": 43.49,
+    "active": 1,
+    "waiting": 14,
+    "inactive": 91
+  },
+  {
+    "t": 43.5,
+    "active": 2,
+    "waiting": 14,
+    "inactive": 90
+  },
+  {
+    "t": 44.94,
+    "active": 1,
+    "waiting": 15,
+    "inactive": 89
+  },
+  {
+    "t": 44.97,
+    "active": 2,
+    "waiting": 15,
+    "inactive": 88
+  },
+  {
+    "t": 45.23,
+    "active": 2,
+    "waiting": 16,
+    "inactive": 87
+  },
+  {
+    "t": 45.29,
+    "active": 1,
+    "waiting": 16,
+    "inactive": 87
+  },
+  {
+    "t": 45.3,
+    "active": 2,
+    "waiting": 16,
+    "inactive": 86
+  },
+  {
+    "t": 45.51,
+    "active": 2,
+    "waiting": 15,
+    "inactive": 86
+  },
+  {
+    "t": 45.959999999999994,
+    "active": 2,
+    "waiting": 16,
+    "inactive": 85
+  },
+  {
+    "t": 46.059999999999995,
+    "active": 1,
+    "waiting": 16,
+    "inactive": 85
+  },
+  {
+    "t": 46.07,
+    "active": 2,
+    "waiting": 15,
+    "inactive": 85
+  },
+  {
+    "t": 46.27,
+    "active": 1,
+    "waiting": 15,
+    "inactive": 85
+  },
+  {
+    "t": 46.32,
+    "active": 2,
+    "waiting": 14,
+    "inactive": 85
+  },
+  {
+    "t": 50.52,
+    "active": 2,
+    "waiting": 14,
+    "inactive": 84
+  },
+  {
+    "t": 57.03,
+    "active": 1,
+    "waiting": 15,
+    "inactive": 83
+  },
+  {
+    "t": 57.04,
+    "active": 2,
+    "waiting": 14,
+    "inactive": 83
+  },
+  {
+    "t": 59.65,
+    "active": 2,
+    "waiting": 14,
+    "inactive": 82
+  },
+  {
+    "t": 60.85,
+    "active": 2,
+    "waiting": 15,
+    "inactive": 80
+  },
+  {
+    "t": 60.98,
+    "active": 3,
+    "waiting": 15,
+    "inactive": 79
+  },
+  {
+    "t": 60.980000000000004,
+    "active": 2,
+    "waiting": 15,
+    "inactive": 79
+  },
+  {
+    "t": 62.0,
+    "active": 2,
+    "waiting": 16,
+    "inactive": 78
+  },
+  {
+    "t": 62.05,
+    "active": 2,
+    "waiting": 15,
+    "inactive": 78
+  },
+  {
+    "t": 62.67,
+    "active": 1,
+    "waiting": 16,
+    "inactive": 77
+  },
+  {
+    "t": 62.69,
+    "active": 2,
+    "waiting": 15,
+    "inactive": 77
+  },
+  {
+    "t": 64.19,
+    "active": 2,
+    "waiting": 15,
+    "inactive": 76
+  },
+  {
+    "t": 72.28,
+    "active": 2,
+    "waiting": 16,
+    "inactive": 75
+  },
+  {
+    "t": 72.28999999999999,
+    "active": 1,
+    "waiting": 17,
+    "inactive": 74
+  },
+  {
+    "t": 72.29,
+    "active": 2,
+    "waiting": 16,
+    "inactive": 74
+  },
+  {
+    "t": 72.67,
+    "active": 1,
+    "waiting": 16,
+    "inactive": 74
+  },
+  {
+    "t": 72.68,
+    "active": 2,
+    "waiting": 15,
+    "inactive": 74
+  },
+  {
+    "t": 72.82,
+    "active": 3,
+    "waiting": 14,
+    "inactive": 74
+  },
+  {
+    "t": 72.82000000000001,
+    "active": 2,
+    "waiting": 14,
+    "inactive": 74
+  },
+  {
+    "t": 72.93,
+    "active": 1,
+    "waiting": 14,
+    "inactive": 74
+  },
+  {
+    "t": 72.96,
+    "active": 2,
+    "waiting": 13,
+    "inactive": 74
+  },
+  {
+    "t": 73.49,
+    "active": 1,
+    "waiting": 13,
+    "inactive": 74
+  },
+  {
+    "t": 73.5,
+    "active": 2,
+    "waiting": 12,
+    "inactive": 74
+  },
+  {
+    "t": 76.97,
+    "active": 2,
+    "waiting": 13,
+    "inactive": 73
+  },
+  {
+    "t": 77.24,
+    "active": 1,
+    "waiting": 13,
+    "inactive": 73
+  },
+  {
+    "t": 77.25,
+    "active": 2,
+    "waiting": 12,
+    "inactive": 73
+  },
+  {
+    "t": 80.83,
+    "active": 2,
+    "waiting": 13,
+    "inactive": 72
+  },
+  {
+    "t": 81.0,
+    "active": 1,
+    "waiting": 13,
+    "inactive": 72
+  },
+  {
+    "t": 81.01,
+    "active": 2,
+    "waiting": 12,
+    "inactive": 72
+  },
+  {
+    "t": 82.97,
+    "active": 2,
+    "waiting": 12,
+    "inactive": 71
+  },
+  {
+    "t": 83.34,
+    "active": 2,
+    "waiting": 13,
+    "inactive": 70
+  },
+  {
+    "t": 83.92999999999999,
+    "active": 1,
+    "waiting": 13,
+    "inactive": 70
+  },
+  {
+    "t": 84.25,
+    "active": 2,
+    "waiting": 14,
+    "inactive": 67
+  },
+  {
+    "t": 84.79,
+    "active": 1,
+    "waiting": 15,
+    "inactive": 66
+  },
+  {
+    "t": 84.8,
+    "active": 2,
+    "waiting": 15,
+    "inactive": 65
+  },
+  {
+    "t": 84.85,
+    "active": 2,
+    "waiting": 16,
+    "inactive": 63
+  },
+  {
+    "t": 85.03,
+    "active": 1,
+    "waiting": 16,
+    "inactive": 63
+  },
+  {
+    "t": 85.04,
+    "active": 2,
+    "waiting": 16,
+    "inactive": 62
+  },
+  {
+    "t": 85.17,
+    "active": 2,
+    "waiting": 17,
+    "inactive": 61
+  },
+  {
+    "t": 85.2,
+    "active": 2,
+    "waiting": 16,
+    "inactive": 61
+  },
+  {
+    "t": 85.28,
+    "active": 1,
+    "waiting": 16,
+    "inactive": 61
+  },
+  {
+    "t": 85.29,
+    "active": 2,
+    "waiting": 15,
+    "inactive": 61
+  },
+  {
+    "t": 85.31,
+    "active": 1,
+    "waiting": 15,
+    "inactive": 61
+  },
+  {
+    "t": 85.32,
+    "active": 2,
+    "waiting": 14,
+    "inactive": 61
+  },
+  {
+    "t": 85.55,
+    "active": 2,
+    "waiting": 15,
+    "inactive": 60
+  },
+  {
+    "t": 85.75,
+    "active": 1,
+    "waiting": 15,
+    "inactive": 60
+  },
+  {
+    "t": 85.76,
+    "active": 2,
+    "waiting": 14,
+    "inactive": 60
+  },
+  {
+    "t": 85.82,
+    "active": 1,
+    "waiting": 14,
+    "inactive": 60
+  },
+  {
+    "t": 85.87,
+    "active": 2,
+    "waiting": 13,
+    "inactive": 60
+  },
+  {
+    "t": 86.75,
+    "active": 2,
+    "waiting": 14,
+    "inactive": 59
+  },
+  {
+    "t": 87.57,
+    "active": 3,
+    "waiting": 13,
+    "inactive": 59
+  },
+  {
+    "t": 87.57000000000001,
+    "active": 2,
+    "waiting": 13,
+    "inactive": 59
+  },
+  {
+    "t": 89.75,
+    "active": 1,
+    "waiting": 14,
+    "inactive": 58
+  },
+  {
+    "t": 89.76,
+    "active": 2,
+    "waiting": 13,
+    "inactive": 58
+  },
+  {
+    "t": 89.82000000000001,
+    "active": 1,
+    "waiting": 13,
+    "inactive": 58
+  },
+  {
+    "t": 89.83,
+    "active": 2,
+    "waiting": 12,
+    "inactive": 58
+  },
+  {
+    "t": 90.59,
+    "active": 2,
+    "waiting": 11,
+    "inactive": 58
+  },
+  {
+    "t": 90.96000000000001,
+    "active": 1,
+    "waiting": 11,
+    "inactive": 58
+  },
+  {
+    "t": 90.99,
+    "active": 2,
+    "waiting": 10,
+    "inactive": 58
+  },
+  {
+    "t": 91.72,
+    "active": 2,
+    "waiting": 9,
+    "inactive": 58
+  },
+  {
+    "t": 92.02,
+    "active": 1,
+    "waiting": 9,
+    "inactive": 58
+  },
+  {
+    "t": 92.03,
+    "active": 2,
+    "waiting": 9,
+    "inactive": 57
+  },
+  {
+    "t": 93.62,
+    "active": 1,
+    "waiting": 10,
+    "inactive": 56
+  },
+  {
+    "t": 93.63,
+    "active": 2,
+    "waiting": 10,
+    "inactive": 55
+  },
+  {
+    "t": 94.03999999999999,
+    "active": 2,
+    "waiting": 11,
+    "inactive": 54
+  },
+  {
+    "t": 94.08,
+    "active": 1,
+    "waiting": 11,
+    "inactive": 54
+  },
+  {
+    "t": 94.09,
+    "active": 2,
+    "waiting": 11,
+    "inactive": 53
+  },
+  {
+    "t": 94.1,
+    "active": 1,
+    "waiting": 11,
+    "inactive": 53
+  },
+  {
+    "t": 94.11,
+    "active": 2,
+    "waiting": 10,
+    "inactive": 53
+  },
+  {
+    "t": 96.06,
+    "active": 2,
+    "waiting": 10,
+    "inactive": 52
+  },
+  {
+    "t": 98.9,
+    "active": 1,
+    "waiting": 10,
+    "inactive": 52
+  },
+  {
+    "t": 99.03,
+    "active": 2,
+    "waiting": 9,
+    "inactive": 52
+  },
+  {
+    "t": 99.72,
+    "active": 1,
+    "waiting": 9,
+    "inactive": 52
+  },
+  {
+    "t": 99.73,
+    "active": 2,
+    "waiting": 8,
+    "inactive": 52
+  },
+  {
+    "t": 101.43,
+    "active": 1,
+    "waiting": 8,
+    "inactive": 52
+  },
+  {
+    "t": 101.44,
+    "active": 2,
+    "waiting": 7,
+    "inactive": 52
+  },
+  {
+    "t": 103.84,
+    "active": 1,
+    "waiting": 7,
+    "inactive": 52
+  },
+  {
+    "t": 103.85,
+    "active": 2,
+    "waiting": 6,
+    "inactive": 52
+  },
+  {
+    "t": 104.77,
+    "active": 2,
+    "waiting": 7,
+    "inactive": 51
+  },
+  {
+    "t": 105.07,
+    "active": 1,
+    "waiting": 7,
+    "inactive": 51
+  },
+  {
+    "t": 105.08,
+    "active": 2,
+    "waiting": 6,
+    "inactive": 51
+  },
+  {
+    "t": 106.75,
+    "active": 1,
+    "waiting": 6,
+    "inactive": 51
+  },
+  {
+    "t": 106.76,
+    "active": 2,
+    "waiting": 6,
+    "inactive": 50
+  },
+  {
+    "t": 107.19000000000001,
+    "active": 2,
+    "waiting": 7,
+    "inactive": 49
+  },
+  {
+    "t": 107.23,
+    "active": 2,
+    "waiting": 8,
+    "inactive": 48
+  },
+  {
+    "t": 107.27000000000001,
+    "active": 1,
+    "waiting": 8,
+    "inactive": 48
+  },
+  {
+    "t": 107.28,
+    "active": 2,
+    "waiting": 8,
+    "inactive": 47
+  },
+  {
+    "t": 107.96000000000001,
+    "active": 1,
+    "waiting": 8,
+    "inactive": 47
+  },
+  {
+    "t": 107.97,
+    "active": 2,
+    "waiting": 8,
+    "inactive": 46
+  },
+  {
+    "t": 108.57,
+    "active": 1,
+    "waiting": 8,
+    "inactive": 46
+  },
+  {
+    "t": 108.58,
+    "active": 2,
+    "waiting": 8,
+    "inactive": 45
+  },
+  {
+    "t": 109.13,
+    "active": 2,
+    "waiting": 8,
+    "inactive": 44
+  },
+  {
+    "t": 111.99,
+    "active": 1,
+    "waiting": 9,
+    "inactive": 43
+  },
+  {
+    "t": 112.0,
+    "active": 2,
+    "waiting": 9,
+    "inactive": 42
+  },
+  {
+    "t": 112.42,
+    "active": 2,
+    "waiting": 10,
+    "inactive": 41
+  },
+  {
+    "t": 112.64,
+    "active": 1,
+    "waiting": 10,
+    "inactive": 41
+  },
+  {
+    "t": 112.66,
+    "active": 2,
+    "waiting": 10,
+    "inactive": 40
+  },
+  {
+    "t": 113.52,
+    "active": 2,
+    "waiting": 10,
+    "inactive": 39
+  },
+  {
+    "t": 114.42,
+    "active": 2,
+    "waiting": 10,
+    "inactive": 38
+  },
+  {
+    "t": 114.47,
+    "active": 2,
+    "waiting": 11,
+    "inactive": 37
+  },
+  {
+    "t": 114.6,
+    "active": 1,
+    "waiting": 11,
+    "inactive": 37
+  },
+  {
+    "t": 114.61,
+    "active": 2,
+    "waiting": 11,
+    "inactive": 36
+  },
+  {
+    "t": 114.62,
+    "active": 2,
+    "waiting": 12,
+    "inactive": 35
+  },
+  {
+    "t": 114.68,
+    "active": 1,
+    "waiting": 12,
+    "inactive": 35
+  },
+  {
+    "t": 114.69,
+    "active": 2,
+    "waiting": 12,
+    "inactive": 34
+  },
+  {
+    "t": 116.53,
+    "active": 1,
+    "waiting": 13,
+    "inactive": 33
+  },
+  {
+    "t": 116.55,
+    "active": 2,
+    "waiting": 12,
+    "inactive": 33
+  },
+  {
+    "t": 116.57,
+    "active": 2,
+    "waiting": 13,
+    "inactive": 32
+  },
+  {
+    "t": 116.66,
+    "active": 1,
+    "waiting": 13,
+    "inactive": 32
+  },
+  {
+    "t": 116.67,
+    "active": 2,
+    "waiting": 12,
+    "inactive": 32
+  },
+  {
+    "t": 117.96,
+    "active": 1,
+    "waiting": 13,
+    "inactive": 31
+  },
+  {
+    "t": 117.97,
+    "active": 2,
+    "waiting": 12,
+    "inactive": 31
+  },
+  {
+    "t": 118.65,
+    "active": 1,
+    "waiting": 12,
+    "inactive": 31
+  },
+  {
+    "t": 118.68,
+    "active": 2,
+    "waiting": 11,
+    "inactive": 31
+  },
+  {
+    "t": 122.29,
+    "active": 2,
+    "waiting": 10,
+    "inactive": 31
+  },
+  {
+    "t": 122.68,
+    "active": 2,
+    "waiting": 9,
+    "inactive": 31
+  },
+  {
+    "t": 123.85000000000001,
+    "active": 1,
+    "waiting": 9,
+    "inactive": 31
+  },
+  {
+    "t": 123.89,
+    "active": 2,
+    "waiting": 8,
+    "inactive": 31
+  },
+  {
+    "t": 124.3,
+    "active": 2,
+    "waiting": 7,
+    "inactive": 31
+  },
+  {
+    "t": 124.64999999999999,
+    "active": 1,
+    "waiting": 7,
+    "inactive": 31
+  },
+  {
+    "t": 124.65,
+    "active": 2,
+    "waiting": 6,
+    "inactive": 31
+  },
+  {
+    "t": 125.21,
+    "active": 3,
+    "waiting": 5,
+    "inactive": 31
+  },
+  {
+    "t": 125.21000000000001,
+    "active": 2,
+    "waiting": 6,
+    "inactive": 30
+  },
+  {
+    "t": 126.94999999999999,
+    "active": 1,
+    "waiting": 7,
+    "inactive": 29
+  },
+  {
+    "t": 126.97,
+    "active": 2,
+    "waiting": 6,
+    "inactive": 29
+  },
+  {
+    "t": 128.09,
+    "active": 2,
+    "waiting": 7,
+    "inactive": 28
+  },
+  {
+    "t": 128.5,
+    "active": 1,
+    "waiting": 7,
+    "inactive": 28
+  },
+  {
+    "t": 128.52,
+    "active": 2,
+    "waiting": 6,
+    "inactive": 28
+  },
+  {
+    "t": 128.60999999999999,
+    "active": 1,
+    "waiting": 7,
+    "inactive": 27
+  },
+  {
+    "t": 128.62,
+    "active": 2,
+    "waiting": 7,
+    "inactive": 26
+  },
+  {
+    "t": 129.33,
+    "active": 2,
+    "waiting": 8,
+    "inactive": 25
+  },
+  {
+    "t": 129.7,
+    "active": 3,
+    "waiting": 8,
+    "inactive": 24
+  },
+  {
+    "t": 129.70000000000002,
+    "active": 2,
+    "waiting": 8,
+    "inactive": 24
+  },
+  {
+    "t": 129.85,
+    "active": 2,
+    "waiting": 8,
+    "inactive": 23
+  },
+  {
+    "t": 129.94,
+    "active": 2,
+    "waiting": 8,
+    "inactive": 22
+  },
+  {
+    "t": 130.0,
+    "active": 2,
+    "waiting": 9,
+    "inactive": 21
+  },
+  {
+    "t": 130.03,
+    "active": 1,
+    "waiting": 9,
+    "inactive": 21
+  },
+  {
+    "t": 130.04,
+    "active": 2,
+    "waiting": 9,
+    "inactive": 20
+  },
+  {
+    "t": 130.19,
+    "active": 1,
+    "waiting": 9,
+    "inactive": 20
+  },
+  {
+    "t": 130.2,
+    "active": 2,
+    "waiting": 8,
+    "inactive": 20
+  },
+  {
+    "t": 130.23,
+    "active": 2,
+    "waiting": 9,
+    "inactive": 19
+  },
+  {
+    "t": 130.29,
+    "active": 2,
+    "waiting": 8,
+    "inactive": 19
+  },
+  {
+    "t": 130.85,
+    "active": 2,
+    "waiting": 7,
+    "inactive": 19
+  },
+  {
+    "t": 131.85999999999999,
+    "active": 1,
+    "waiting": 7,
+    "inactive": 19
+  },
+  {
+    "t": 131.94,
+    "active": 2,
+    "waiting": 6,
+    "inactive": 19
+  },
+  {
+    "t": 131.96,
+    "active": 2,
+    "waiting": 5,
+    "inactive": 19
+  },
+  {
+    "t": 132.66,
+    "active": 2,
+    "waiting": 6,
+    "inactive": 18
+  },
+  {
+    "t": 133.11,
+    "active": 1,
+    "waiting": 6,
+    "inactive": 18
+  },
+  {
+    "t": 133.13,
+    "active": 2,
+    "waiting": 5,
+    "inactive": 18
+  },
+  {
+    "t": 137.92,
+    "active": 2,
+    "waiting": 4,
+    "inactive": 18
+  },
+  {
+    "t": 138.29999999999998,
+    "active": 2,
+    "waiting": 5,
+    "inactive": 17
+  },
+  {
+    "t": 143.29999999999998,
+    "active": 2,
+    "waiting": 6,
+    "inactive": 16
+  },
+  {
+    "t": 145.29999999999998,
+    "active": 1,
+    "waiting": 6,
+    "inactive": 16
+  },
+  {
+    "t": 145.31,
+    "active": 2,
+    "waiting": 5,
+    "inactive": 16
+  },
+  {
+    "t": 145.96,
+    "active": 1,
+    "waiting": 6,
+    "inactive": 15
+  },
+  {
+    "t": 145.98,
+    "active": 2,
+    "waiting": 6,
+    "inactive": 14
+  },
+  {
+    "t": 146.73999999999998,
+    "active": 1,
+    "waiting": 6,
+    "inactive": 14
+  },
+  {
+    "t": 146.75,
+    "active": 2,
+    "waiting": 6,
+    "inactive": 13
+  },
+  {
+    "t": 147.29,
+    "active": 2,
+    "waiting": 7,
+    "inactive": 12
+  },
+  {
+    "t": 147.8,
+    "active": 1,
+    "waiting": 7,
+    "inactive": 12
+  },
+  {
+    "t": 147.81,
+    "active": 2,
+    "waiting": 7,
+    "inactive": 11
+  },
+  {
+    "t": 148.32,
+    "active": 3,
+    "waiting": 7,
+    "inactive": 10
+  },
+  {
+    "t": 148.32999999999998,
+    "active": 2,
+    "waiting": 7,
+    "inactive": 10
+  },
+  {
+    "t": 148.36,
+    "active": 2,
+    "waiting": 8,
+    "inactive": 9
+  },
+  {
+    "t": 148.43,
+    "active": 1,
+    "waiting": 8,
+    "inactive": 9
+  },
+  {
+    "t": 148.44,
+    "active": 2,
+    "waiting": 7,
+    "inactive": 9
+  },
+  {
+    "t": 148.69,
+    "active": 1,
+    "waiting": 8,
+    "inactive": 8
+  },
+  {
+    "t": 148.7,
+    "active": 2,
+    "waiting": 7,
+    "inactive": 8
+  },
+  {
+    "t": 155.82,
+    "active": 2,
+    "waiting": 6,
+    "inactive": 8
+  },
+  {
+    "t": 161.29,
+    "active": 1,
+    "waiting": 6,
+    "inactive": 8
+  },
+  {
+    "t": 161.33,
+    "active": 2,
+    "waiting": 5,
+    "inactive": 8
+  },
+  {
+    "t": 163.58,
+    "active": 1,
+    "waiting": 5,
+    "inactive": 8
+  },
+  {
+    "t": 163.59,
+    "active": 2,
+    "waiting": 4,
+    "inactive": 8
+  },
+  {
+    "t": 164.16,
+    "active": 2,
+    "waiting": 5,
+    "inactive": 7
+  },
+  {
+    "t": 164.34,
+    "active": 1,
+    "waiting": 5,
+    "inactive": 7
+  },
+  {
+    "t": 164.35,
+    "active": 2,
+    "waiting": 4,
+    "inactive": 7
+  },
+  {
+    "t": 173.37,
+    "active": 2,
+    "waiting": 3,
+    "inactive": 7
+  },
+  {
+    "t": 176.13,
+    "active": 1,
+    "waiting": 3,
+    "inactive": 7
+  },
+  {
+    "t": 176.15,
+    "active": 2,
+    "waiting": 2,
+    "inactive": 7
+  },
+  {
+    "t": 177.31,
+    "active": 2,
+    "waiting": 2,
+    "inactive": 6
+  },
+  {
+    "t": 179.1,
+    "active": 2,
+    "waiting": 3,
+    "inactive": 5
+  },
+  {
+    "t": 179.26,
+    "active": 1,
+    "waiting": 3,
+    "inactive": 5
+  },
+  {
+    "t": 179.27,
+    "active": 2,
+    "waiting": 3,
+    "inactive": 4
+  },
+  {
+    "t": 179.81,
+    "active": 2,
+    "waiting": 4,
+    "inactive": 3
+  },
+  {
+    "t": 180.51000000000002,
+    "active": 1,
+    "waiting": 4,
+    "inactive": 3
+  },
+  {
+    "t": 180.52,
+    "active": 2,
+    "waiting": 3,
+    "inactive": 3
+  },
+  {
+    "t": 190.15,
+    "active": 2,
+    "waiting": 3,
+    "inactive": 2
+  },
+  {
+    "t": 190.45,
+    "active": 3,
+    "waiting": 2,
+    "inactive": 2
+  },
+  {
+    "t": 190.45000000000002,
+    "active": 2,
+    "waiting": 2,
+    "inactive": 2
+  },
+  {
+    "t": 194.3,
+    "active": 2,
+    "waiting": 1,
+    "inactive": 2
+  },
+  {
+    "t": 196.74,
+    "active": 1,
+    "waiting": 1,
+    "inactive": 2
+  },
+  {
+    "t": 196.75,
+    "active": 2,
+    "waiting": 0,
+    "inactive": 2
+  },
+  {
+    "t": 198.49,
+    "active": 2,
+    "waiting": 1,
+    "inactive": 1
+  },
+  {
+    "t": 199.43,
+    "active": 1,
+    "waiting": 1,
+    "inactive": 1
+  },
+  {
+    "t": 199.58,
+    "active": 2,
+    "waiting": 0,
+    "inactive": 1
+  },
+  {
+    "t": 205.5,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 1
+  },
+  {
+    "t": 208.01,
+    "active": 2,
+    "waiting": 0,
+    "inactive": 0
+  },
+  {
+    "t": 208.01000000000002,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0
+  },
+  {
+    "t": 220.47,
+    "active": 0,
+    "waiting": 0,
+    "inactive": 0
+  }
+];
+const CPU_USAGE = [
+  [
+    3.013821637,
+    56.52173913043478
+  ],
+  [
+    3.52689945,
+    15.315315315315317
+  ],
+  [
+    4.059775283,
+    7.2727272727272805
+  ],
+  [
+    4.564927015,
+    16.666666666666657
+  ],
+  [
+    5.072498415,
+    37.86407766990292
+  ],
+  [
+    5.574316619,
+    34.90566037735849
+  ],
+  [
+    6.078758348,
+    13.0
+  ],
+  [
+    6.581948683,
+    28.84615384615384
+  ],
+  [
+    6.951280258,
+    48.611111111111114
+  ],
+  [
+    7.146509442,
+    38.095238095238095
+  ],
+  [
+    7.741760428,
+    75.20661157024793
+  ],
+  [
+    8.243598768,
+    91.08910891089108
+  ],
+  [
+    8.655569734,
+    81.92771084337349
+  ],
+  [
+    8.760694056,
+    85.71428571428572
+  ],
+  [
+    9.272908168,
+    68.62745098039215
+  ],
+  [
+    9.845556528,
+    85.84070796460176
+  ],
+  [
+    10.347196705,
+    81.1881188118812
+  ],
+  [
+    10.580528328,
+    18.75
+  ],
+  [
+    11.089593793,
+    91.17647058823529
+  ],
+  [
+    11.4246174,
+    91.17647058823529
+  ],
+  [
+    11.765072529,
+    94.02985074626866
+  ],
+  [
+    12.277781184,
+    89.2156862745098
+  ],
+  [
+    12.785242521,
+    77.66990291262135
+  ],
+  [
+    13.288645453,
+    92.15686274509804
+  ],
+  [
+    13.790482246,
+    87.12871287128712
+  ],
+  [
+    13.981977566,
+    94.73684210526316
+  ],
+  [
+    14.17144372,
+    58.97435897435898
+  ],
+  [
+    14.682934633,
+    41.9047619047619
+  ],
+  [
+    15.112076349,
+    88.50574712643679
+  ],
+  [
+    15.254680346,
+    100.0
+  ],
+  [
+    15.762543278999999,
+    89.10891089108911
+  ],
+  [
+    16.264479495,
+    94.11764705882354
+  ],
+  [
+    16.371012327,
+    95.0
+  ],
+  [
+    16.553077903,
+    91.89189189189189
+  ],
+  [
+    17.057535421,
+    93.06930693069307
+  ],
+  [
+    17.639234014,
+    72.17391304347827
+  ],
+  [
+    17.935232115,
+    93.54838709677419
+  ],
+  [
+    18.069989154,
+    65.38461538461539
+  ],
+  [
+    18.624947016,
+    93.63636363636364
+  ],
+  [
+    18.980474797,
+    98.59154929577464
+  ],
+  [
+    19.087789103,
+    86.36363636363636
+  ],
+  [
+    19.608700461,
+    90.47619047619048
+  ],
+  [
+    20.11345416,
+    85.71428571428572
+  ],
+  [
+    20.597584609,
+    91.75257731958763
+  ],
+  [
+    21.053558044,
+    93.61702127659575
+  ],
+  [
+    21.57415466,
+    79.6116504854369
+  ],
+  [
+    21.857718445,
+    84.21052631578948
+  ],
+  [
+    22.392147416,
+    67.9245283018868
+  ],
+  [
+    22.839552989,
+    89.77272727272727
+  ],
+  [
+    23.346158316,
+    93.13725490196079
+  ],
+  [
+    23.847818425,
+    95.0
+  ],
+  [
+    24.444640618,
+    91.59663865546219
+  ],
+  [
+    24.667300901,
+    93.33333333333333
+  ],
+  [
+    25.000020661,
+    92.53731343283582
+  ],
+  [
+    25.194443225,
+    87.17948717948718
+  ],
+  [
+    25.748452596,
+    90.990990990991
+  ],
+  [
+    26.250293599,
+    91.08910891089108
+  ],
+  [
+    26.425513791,
+    94.11764705882354
+  ],
+  [
+    26.934955554,
+    72.27722772277227
+  ],
+  [
+    27.272767962,
+    79.71014492753623
+  ],
+  [
+    27.712051496,
+    90.0
+  ],
+  [
+    28.07562427,
+    76.7123287671233
+  ],
+  [
+    28.359263899,
+    54.385964912280706
+  ],
+  [
+    28.829587333,
+    84.94623655913978
+  ],
+  [
+    29.331920858,
+    49.51456310679612
+  ],
+  [
+    29.516045232,
+    66.66666666666667
+  ],
+  [
+    30.028972584,
+    78.0
+  ],
+  [
+    30.305233117,
+    85.71428571428572
+  ],
+  [
+    30.497034334,
+    90.47619047619048
+  ],
+  [
+    31.02994394,
+    77.66990291262135
+  ],
+  [
+    31.176761095,
+    86.20689655172414
+  ],
+  [
+    31.343531725,
+    93.93939393939394
+  ],
+  [
+    31.846948977,
+    89.2156862745098
+  ],
+  [
+    32.350567489,
+    86.0
+  ],
+  [
+    32.851949482,
+    55.445544554455445
+  ],
+  [
+    33.353067304,
+    50.0
+  ],
+  [
+    33.692703601,
+    55.714285714285715
+  ],
+  [
+    33.814199446,
+    86.95652173913044
+  ],
+  [
+    34.32578389,
+    47.57281553398058
+  ],
+  [
+    34.828051913,
+    36.111111111111114
+  ],
+  [
+    35.333919486,
+    77.35849056603773
+  ],
+  [
+    35.858129045,
+    76.0
+  ],
+  [
+    36.361951341,
+    47.61904761904761
+  ],
+  [
+    36.867517414,
+    28.57142857142857
+  ],
+  [
+    37.372250749,
+    41.509433962264154
+  ],
+  [
+    37.516624895,
+    18.51851851851852
+  ],
+  [
+    38.018763147,
+    32.71028037383178
+  ],
+  [
+    38.523268513,
+    28.155339805825236
+  ],
+  [
+    39.032767752,
+    45.04504504504504
+  ],
+  [
+    39.560261417,
+    10.0
+  ],
+  [
+    40.089948316,
+    21.698113207547166
+  ],
+  [
+    40.625943729,
+    64.15094339622641
+  ],
+  [
+    40.790901681,
+    40.54054054054054
+  ],
+  [
+    40.946283132,
+    45.45454545454546
+  ],
+  [
+    41.140308798,
+    59.57446808510639
+  ],
+  [
+    41.682949028,
+    52.88461538461539
+  ],
+  [
+    42.186580607,
+    35.576923076923066
+  ],
+  [
+    42.705006537,
+    6.603773584905653
+  ],
+  [
+    43.207451834,
+    0.9174311926605441
+  ],
+  [
+    43.488991858,
+    10.169491525423723
+  ],
+  [
+    44.001952234,
+    73.52941176470588
+  ],
+  [
+    44.267260296,
+    76.47058823529412
+  ],
+  [
+    44.769610595,
+    69.3069306930693
+  ],
+  [
+    44.945734175,
+    61.11111111111111
+  ],
+  [
+    45.233252168,
+    79.3103448275862
+  ],
+  [
+    45.509908155,
+    77.19298245614036
+  ],
+  [
+    45.954383072,
+    81.3953488372093
+  ],
+  [
+    46.058451154,
+    82.6086956521739
+  ],
+  [
+    46.271185361,
+    76.08695652173913
+  ],
+  [
+    46.821913345,
+    70.47619047619048
+  ],
+  [
+    47.324389143,
+    61.16504854368932
+  ],
+  [
+    47.825620912,
+    87.25490196078431
+  ],
+  [
+    48.327916351,
+    54.54545454545455
+  ],
+  [
+    48.828949243,
+    80.0
+  ],
+  [
+    49.331941449,
+    92.15686274509804
+  ],
+  [
+    49.834093744,
+    76.53061224489795
+  ],
+  [
+    50.338914746,
+    66.0
+  ],
+  [
+    50.519551165,
+    70.27027027027027
+  ],
+  [
+    51.021592783,
+    77.66990291262135
+  ],
+  [
+    51.524829382,
+    60.19417475728155
+  ],
+  [
+    52.029516329,
+    69.0
+  ],
+  [
+    52.532313504,
+    93.0
+  ],
+  [
+    53.035391721,
+    95.04950495049505
+  ],
+  [
+    53.538312244,
+    90.9090909090909
+  ],
+  [
+    54.039947955,
+    92.23300970873787
+  ],
+  [
+    54.550111259,
+    90.9090909090909
+  ],
+  [
+    55.05150899,
+    95.0
+  ],
+  [
+    55.365108701,
+    95.23809523809524
+  ],
+  [
+    55.867165271,
+    93.06930693069307
+  ],
+  [
+    56.369049829,
+    97.0
+  ],
+  [
+    56.871391118,
+    82.82828282828282
+  ],
+  [
+    57.029679087,
+    58.82352941176471
+  ],
+  [
+    57.579581602,
+    47.32142857142857
+  ],
+  [
+    58.082717689,
+    79.20792079207921
+  ],
+  [
+    58.585134313,
+    86.13861386138613
+  ],
+  [
+    59.0879322,
+    94.05940594059406
+  ],
+  [
+    59.591924915,
+    94.0
+  ],
+  [
+    60.150580268,
+    81.41592920353982
+  ],
+  [
+    60.334308524,
+    -5.270498306774158e+19
+  ],
+  [
+    60.835922072,
+    91.2621359223301
+  ],
+  [
+    60.947326491,
+    80.0
+  ],
+  [
+    61.486975279,
+    90.990990990991
+  ],
+  [
+    61.99157406,
+    82.82828282828282
+  ],
+  [
+    62.554937394,
+    76.31578947368422
+  ],
+  [
+    62.675003532,
+    60.869565217391305
+  ],
+  [
+    63.193955736,
+    63.55140186915888
+  ],
+  [
+    63.717922448,
+    61.904761904761905
+  ],
+  [
+    64.189530126,
+    64.21052631578948
+  ],
+  [
+    64.711935066,
+    67.3076923076923
+  ],
+  [
+    65.215434947,
+    81.81818181818181
+  ],
+  [
+    65.71994863,
+    77.22772277227722
+  ],
+  [
+    66.222387584,
+    93.0
+  ],
+  [
+    66.724011604,
+    91.17647058823529
+  ],
+  [
+    67.225706131,
+    85.85858585858585
+  ],
+  [
+    67.730075491,
+    73.0
+  ],
+  [
+    68.236252844,
+    69.6078431372549
+  ],
+  [
+    68.742408826,
+    62.62626262626262
+  ],
+  [
+    69.244098413,
+    62.37623762376238
+  ],
+  [
+    69.803974381,
+    40.0
+  ],
+  [
+    70.307416656,
+    83.01886792452831
+  ],
+  [
+    70.809131321,
+    99.00990099009901
+  ],
+  [
+    71.312833486,
+    88.0
+  ],
+  [
+    71.814587337,
+    48.0392156862745
+  ],
+  [
+    72.283622623,
+    32.29166666666666
+  ],
+  [
+    72.673449757,
+    50.0
+  ],
+  [
+    72.816058323,
+    84.61538461538461
+  ],
+  [
+    72.932674232,
+    76.0
+  ],
+  [
+    73.42361129,
+    82.47422680412372
+  ],
+  [
+    73.998509603,
+    64.16666666666666
+  ],
+  [
+    74.502295701,
+    96.96969696969697
+  ],
+  [
+    75.007888705,
+    93.06930693069307
+  ],
+  [
+    75.510317361,
+    93.06930693069307
+  ],
+  [
+    76.013931272,
+    93.06930693069307
+  ],
+  [
+    76.5157209,
+    95.0
+  ],
+  [
+    76.965266328,
+    96.62921348314607
+  ],
+  [
+    77.238045424,
+    71.42857142857143
+  ],
+  [
+    77.747979696,
+    72.27722772277227
+  ],
+  [
+    78.250047562,
+    93.0
+  ],
+  [
+    78.753932945,
+    91.08910891089108
+  ],
+  [
+    79.255058179,
+    92.07920792079207
+  ],
+  [
+    79.756700358,
+    97.97979797979798
+  ],
+  [
+    80.258432317,
+    96.96969696969697
+  ],
+  [
+    80.762081676,
+    90.29126213592232
+  ],
+  [
+    80.994058874,
+    89.58333333333333
+  ],
+  [
+    81.505344419,
+    89.8989898989899
+  ],
+  [
+    82.009567885,
+    87.37864077669903
+  ],
+  [
+    82.532637847,
+    91.34615384615384
+  ],
+  [
+    82.963767254,
+    94.31818181818181
+  ],
+  [
+    83.340004301,
+    77.92207792207792
+  ],
+  [
+    83.842141105,
+    32.35294117647058
+  ],
+  [
+    84.248136381,
+    10.843373493975903
+  ],
+  [
+    84.757028011,
+    55.445544554455445
+  ],
+  [
+    84.993967119,
+    43.99999999999999
+  ],
+  [
+    85.16342073,
+    77.14285714285714
+  ],
+  [
+    85.278929889,
+    40.90909090909091
+  ],
+  [
+    85.55791635,
+    64.91228070175438
+  ],
+  [
+    85.7439855,
+    64.1025641025641
+  ],
+  [
+    85.868126499,
+    62.5
+  ],
+  [
+    86.372827715,
+    54.90196078431372
+  ],
+  [
+    86.751109515,
+    80.51948051948051
+  ],
+  [
+    87.255765978,
+    80.8080808080808
+  ],
+  [
+    87.564015354,
+    88.70967741935485
+  ],
+  [
+    88.07207275,
+    61.76470588235294
+  ],
+  [
+    88.576927764,
+    82.0
+  ],
+  [
+    89.111709724,
+    84.25925925925927
+  ],
+  [
+    89.613062865,
+    89.0
+  ],
+  [
+    89.751504516,
+    93.33333333333333
+  ],
+  [
+    90.330486667,
+    72.80701754385964
+  ],
+  [
+    90.496464905,
+    64.51612903225806
+  ],
+  [
+    90.868487018,
+    70.51282051282051
+  ],
+  [
+    90.991398768,
+    82.6086956521739
+  ],
+  [
+    91.492939661,
+    59.4059405940594
+  ],
+  [
+    91.66770313,
+    75.75757575757575
+  ],
+  [
+    91.835658584,
+    76.47058823529412
+  ],
+  [
+    91.985623101,
+    56.25
+  ],
+  [
+    92.525761492,
+    75.70093457943925
+  ],
+  [
+    93.027920881,
+    67.96116504854368
+  ],
+  [
+    93.53017387,
+    54.80769230769231
+  ],
+  [
+    94.034628737,
+    50.0
+  ],
+  [
+    94.615934331,
+    75.86206896551724
+  ],
+  [
+    95.121288331,
+    70.0
+  ],
+  [
+    95.626649224,
+    63.10679611650485
+  ],
+  [
+    96.054114361,
+    63.2183908045977
+  ],
+  [
+    96.561607764,
+    50.0
+  ],
+  [
+    97.065278906,
+    86.0
+  ],
+  [
+    97.570886114,
+    70.0
+  ],
+  [
+    98.07472087,
+    89.32038834951456
+  ],
+  [
+    98.57654585,
+    82.82828282828282
+  ],
+  [
+    98.905482548,
+    95.38461538461539
+  ],
+  [
+    99.026369187,
+    44.827586206896555
+  ],
+  [
+    99.550918238,
+    56.36363636363637
+  ],
+  [
+    99.719021241,
+    15.151515151515156
+  ],
+  [
+    100.230122866,
+    70.873786407767
+  ],
+  [
+    100.602135238,
+    94.5945945945946
+  ],
+  [
+    101.103213827,
+    91.08910891089108
+  ],
+  [
+    101.427299518,
+    96.92307692307692
+  ],
+  [
+    101.936946911,
+    69.3069306930693
+  ],
+  [
+    102.440937724,
+    60.0
+  ],
+  [
+    102.884543602,
+    81.11111111111111
+  ],
+  [
+    103.387910732,
+    97.02970297029702
+  ],
+  [
+    103.837585903,
+    47.95918367346938
+  ],
+  [
+    104.346183096,
+    57.142857142857146
+  ],
+  [
+    104.762781824,
+    75.0
+  ],
+  [
+    105.072142791,
+    90.625
+  ],
+  [
+    105.578957498,
+    82.17821782178218
+  ],
+  [
+    106.080605246,
+    84.15841584158416
+  ],
+  [
+    106.583090124,
+    84.6938775510204
+  ],
+  [
+    106.759397344,
+    48.64864864864865
+  ],
+  [
+    107.191916916,
+    85.3658536585366
+  ],
+  [
+    107.646503636,
+    66.66666666666667
+  ],
+  [
+    107.964122825,
+    71.42857142857143
+  ],
+  [
+    108.474795608,
+    86.53846153846153
+  ],
+  [
+    108.577547744,
+    85.0
+  ],
+  [
+    109.078503504,
+    93.0
+  ],
+  [
+    109.630427651,
+    86.48648648648648
+  ],
+  [
+    110.132354787,
+    94.05940594059406
+  ],
+  [
+    110.634062773,
+    89.0
+  ],
+  [
+    111.050785819,
+    92.7710843373494
+  ],
+  [
+    111.552937007,
+    96.0
+  ],
+  [
+    111.99359446,
+    83.33333333333334
+  ],
+  [
+    112.424759782,
+    85.71428571428572
+  ],
+  [
+    112.640267786,
+    91.11111111111111
+  ],
+  [
+    113.160897173,
+    90.29126213592232
+  ],
+  [
+    113.457472927,
+    94.82758620689656
+  ],
+  [
+    114.017792319,
+    90.09009009009009
+  ],
+  [
+    114.15237017,
+    82.75862068965517
+  ],
+  [
+    114.418251957,
+    96.29629629629629
+  ],
+  [
+    114.604558084,
+    83.33333333333334
+  ],
+  [
+    115.188737955,
+    76.27118644067797
+  ],
+  [
+    115.662396058,
+    73.6842105263158
+  ],
+  [
+    116.166947918,
+    97.97979797979798
+  ],
+  [
+    116.524691839,
+    90.27777777777777
+  ],
+  [
+    116.660012694,
+    75.0
+  ],
+  [
+    117.17207219,
+    34.31372549019608
+  ],
+  [
+    117.681505471,
+    35.84905660377359
+  ],
+  [
+    117.961110721,
+    67.24137931034483
+  ],
+  [
+    118.457377868,
+    87.87878787878788
+  ],
+  [
+    118.652156565,
+    89.1891891891892
+  ],
+  [
+    119.178930543,
+    82.4074074074074
+  ],
+  [
+    119.681211063,
+    92.0
+  ],
+  [
+    120.184425205,
+    71.2871287128713
+  ],
+  [
+    120.696344325,
+    83.16831683168317
+  ],
+  [
+    120.966873831,
+    90.74074074074073
+  ],
+  [
+    121.467874756,
+    84.46601941747574
+  ],
+  [
+    121.970943209,
+    82.82828282828282
+  ],
+  [
+    122.28557527,
+    84.375
+  ],
+  [
+    122.430069908,
+    40.0
+  ],
+  [
+    122.674297804,
+    58.0
+  ],
+  [
+    123.181926588,
+    79.20792079207921
+  ],
+  [
+    123.687407,
+    93.06930693069307
+  ],
+  [
+    123.850965085,
+    58.33333333333333
+  ],
+  [
+    124.225990198,
+    63.013698630136986
+  ],
+  [
+    124.552917891,
+    93.75
+  ],
+  [
+    125.15199344,
+    67.22689075630252
+  ],
+  [
+    125.716678431,
+    60.869565217391305
+  ],
+  [
+    126.218356261,
+    76.47058823529412
+  ],
+  [
+    126.721260977,
+    63.63636363636363
+  ],
+  [
+    126.95490769,
+    85.71428571428572
+  ],
+  [
+    127.466174297,
+    66.36363636363637
+  ],
+  [
+    127.969442376,
+    91.08910891089108
+  ],
+  [
+    128.09215915,
+    95.83333333333333
+  ],
+  [
+    128.504128297,
+    81.3953488372093
+  ],
+  [
+    128.609084694,
+    55.0
+  ],
+  [
+    129.115595072,
+    65.38461538461539
+  ],
+  [
+    129.327439642,
+    71.11111111111111
+  ],
+  [
+    129.590984448,
+    90.19607843137254
+  ],
+  [
+    129.695144361,
+    94.73684210526316
+  ],
+  [
+    129.842501418,
+    53.125
+  ],
+  [
+    130.001940923,
+    71.875
+  ],
+  [
+    130.124659341,
+    80.0
+  ],
+  [
+    130.231782046,
+    85.71428571428572
+  ],
+  [
+    130.786162079,
+    84.25925925925927
+  ],
+  [
+    131.330937856,
+    76.57657657657657
+  ],
+  [
+    131.837095054,
+    48.07692307692307
+  ],
+  [
+    131.961261294,
+    52.0
+  ],
+  [
+    132.470936133,
+    68.86792452830188
+  ],
+  [
+    132.665069698,
+    94.5945945945946
+  ],
+  [
+    133.115827957,
+    91.39784946236558
+  ],
+  [
+    133.626726247,
+    89.0
+  ],
+  [
+    134.129286523,
+    95.0
+  ],
+  [
+    134.631142529,
+    86.73469387755102
+  ],
+  [
+    135.135081454,
+    93.13725490196079
+  ],
+  [
+    135.637388977,
+    93.13725490196079
+  ],
+  [
+    136.143457368,
+    78.43137254901961
+  ],
+  [
+    136.547068805,
+    86.25
+  ],
+  [
+    137.050261654,
+    87.12871287128712
+  ],
+  [
+    137.551274691,
+    63.55140186915888
+  ],
+  [
+    137.938140201,
+    91.66666666666667
+  ],
+  [
+    138.300461879,
+    63.013698630136986
+  ],
+  [
+    138.802951392,
+    71.56862745098039
+  ],
+  [
+    139.305892239,
+    83.0
+  ],
+  [
+    139.807675452,
+    71.56862745098039
+  ],
+  [
+    140.313407084,
+    65.65656565656566
+  ],
+  [
+    140.814598412,
+    50.98039215686275
+  ],
+  [
+    141.316231162,
+    83.16831683168317
+  ],
+  [
+    141.818961707,
+    66.33663366336634
+  ],
+  [
+    142.325438559,
+    77.45098039215686
+  ],
+  [
+    142.844747023,
+    71.15384615384616
+  ],
+  [
+    143.297174298,
+    75.0
+  ],
+  [
+    143.80793723,
+    52.94117647058824
+  ],
+  [
+    144.318711955,
+    41.584158415841586
+  ],
+  [
+    144.821624794,
+    81.0
+  ],
+  [
+    145.29705384,
+    53.68421052631579
+  ],
+  [
+    145.805297407,
+    62.5
+  ],
+  [
+    145.955931027,
+    48.57142857142858
+  ],
+  [
+    146.477949301,
+    84.15841584158416
+  ],
+  [
+    146.744284481,
+    89.0909090909091
+  ],
+  [
+    147.246495286,
+    47.706422018348626
+  ],
+  [
+    147.786037416,
+    39.090909090909086
+  ],
+  [
+    148.307566853,
+    29.90654205607477
+  ],
+  [
+    148.426294724,
+    65.21739130434783
+  ],
+  [
+    148.691602043,
+    60.37735849056604
+  ],
+  [
+    149.199075805,
+    76.10619469026548
+  ],
+  [
+    149.763014606,
+    81.37254901960785
+  ],
+  [
+    150.264873192,
+    94.0
+  ],
+  [
+    150.767427538,
+    91.0
+  ],
+  [
+    151.274942235,
+    92.07920792079207
+  ],
+  [
+    151.77702328,
+    94.11764705882354
+  ],
+  [
+    152.280070434,
+    88.88888888888889
+  ],
+  [
+    152.781404924,
+    73.26732673267327
+  ],
+  [
+    153.282934011,
+    91.08910891089108
+  ],
+  [
+    153.788305853,
+    95.0
+  ],
+  [
+    154.07822338,
+    93.10344827586206
+  ],
+  [
+    154.580054688,
+    86.13861386138613
+  ],
+  [
+    155.083507104,
+    96.96969696969697
+  ],
+  [
+    155.58515719,
+    91.2621359223301
+  ],
+  [
+    155.820104444,
+    71.73913043478261
+  ],
+  [
+    156.322247894,
+    70.58823529411765
+  ],
+  [
+    156.832134563,
+    79.0
+  ],
+  [
+    157.333906595,
+    84.15841584158416
+  ],
+  [
+    157.83693753,
+    76.23762376237624
+  ],
+  [
+    158.338661855,
+    79.20792079207921
+  ],
+  [
+    158.855628987,
+    37.254901960784316
+  ],
+  [
+    159.357998894,
+    72.27722772277227
+  ],
+  [
+    159.862289588,
+    82.17821782178218
+  ],
+  [
+    160.364621838,
+    88.11881188118812
+  ],
+  [
+    160.922137689,
+    57.01754385964912
+  ],
+  [
+    161.287487517,
+    35.61643835616438
+  ],
+  [
+    161.787553457,
+    39.28571428571429
+  ],
+  [
+    162.289456437,
+    52.475247524752476
+  ],
+  [
+    162.792282871,
+    37.142857142857146
+  ],
+  [
+    163.286698847,
+    68.68686868686868
+  ],
+  [
+    163.572655293,
+    40.32258064516129
+  ],
+  [
+    164.086614112,
+    56.60377358490566
+  ],
+  [
+    164.340973124,
+    60.0
+  ],
+  [
+    164.846921392,
+    57.28155339805826
+  ],
+  [
+    165.371632239,
+    43.103448275862064
+  ],
+  [
+    165.892351202,
+    7.0
+  ],
+  [
+    166.395410556,
+    17.47572815533981
+  ],
+  [
+    166.897506464,
+    67.0
+  ],
+  [
+    167.404932537,
+    52.33644859813084
+  ],
+  [
+    167.91389715,
+    45.63106796116505
+  ],
+  [
+    168.415895265,
+    50.48543689320388
+  ],
+  [
+    168.916897638,
+    47.11538461538461
+  ],
+  [
+    169.420932591,
+    93.0
+  ],
+  [
+    169.923157287,
+    66.0
+  ],
+  [
+    170.426467382,
+    77.0
+  ],
+  [
+    170.928769912,
+    90.19607843137254
+  ],
+  [
+    171.432948824,
+    87.87878787878788
+  ],
+  [
+    171.934577262,
+    74.03846153846153
+  ],
+  [
+    172.195774298,
+    86.27450980392157
+  ],
+  [
+    172.697021848,
+    95.0
+  ],
+  [
+    173.198634279,
+    81.37254901960785
+  ],
+  [
+    173.362833385,
+    52.94117647058824
+  ],
+  [
+    173.873212681,
+    60.19417475728155
+  ],
+  [
+    174.380944223,
+    88.11881188118812
+  ],
+  [
+    174.666034787,
+    84.7457627118644
+  ],
+  [
+    175.168270714,
+    90.9090909090909
+  ],
+  [
+    175.671550847,
+    70.0
+  ],
+  [
+    176.128724798,
+    94.6236559139785
+  ],
+  [
+    176.647926875,
+    52.33644859813084
+  ],
+  [
+    177.152201388,
+    64.76190476190476
+  ],
+  [
+    177.304992473,
+    48.14814814814815
+  ],
+  [
+    177.808479284,
+    50.943396226415096
+  ],
+  [
+    178.309915204,
+    58.25242718446602
+  ],
+  [
+    178.813905104,
+    85.85858585858585
+  ],
+  [
+    179.092911546,
+    87.71929824561404
+  ],
+  [
+    179.262668072,
+    80.0
+  ],
+  [
+    179.767978837,
+    81.0
+  ],
+  [
+    180.304585777,
+    88.18181818181819
+  ],
+  [
+    180.512952569,
+    90.2439024390244
+  ],
+  [
+    181.017349307,
+    87.0
+  ],
+  [
+    181.52214251,
+    88.11881188118812
+  ],
+  [
+    182.023564736,
+    81.81818181818181
+  ],
+  [
+    182.525086195,
+    75.49019607843138
+  ],
+  [
+    183.029269093,
+    92.92929292929293
+  ],
+  [
+    183.531237203,
+    94.11764705882354
+  ],
+  [
+    184.034921092,
+    84.0
+  ],
+  [
+    184.538036816,
+    80.0
+  ],
+  [
+    185.063953721,
+    83.16831683168317
+  ],
+  [
+    185.565675139,
+    76.23762376237624
+  ],
+  [
+    186.067974196,
+    87.87878787878788
+  ],
+  [
+    186.573306915,
+    41.747572815533985
+  ],
+  [
+    187.075191502,
+    10.784313725490193
+  ],
+  [
+    187.581148347,
+    17.307692307692307
+  ],
+  [
+    188.041170022,
+    14.851485148514854
+  ],
+  [
+    188.543996537,
+    3.960396039603964
+  ],
+  [
+    189.049919087,
+    23.148148148148152
+  ],
+  [
+    189.553607944,
+    37.86407766990292
+  ],
+  [
+    190.062164084,
+    5.172413793103445
+  ],
+  [
+    190.409038924,
+    50.0
+  ],
+  [
+    190.950384897,
+    38.983050847457626
+  ],
+  [
+    191.451716381,
+    32.03883495145631
+  ],
+  [
+    191.959933589,
+    44.11764705882353
+  ],
+  [
+    192.467535745,
+    53.211009174311926
+  ],
+  [
+    193.00293344,
+    70.0
+  ],
+  [
+    193.504300605,
+    58.82352941176471
+  ],
+  [
+    194.009924841,
+    70.29702970297029
+  ],
+  [
+    194.293289286,
+    64.40677966101694
+  ],
+  [
+    194.800569675,
+    37.383177570093466
+  ],
+  [
+    195.302986944,
+    41.747572815533985
+  ],
+  [
+    195.438175347,
+    62.96296296296296
+  ],
+  [
+    195.939944758,
+    65.0
+  ],
+  [
+    196.154241824,
+    77.27272727272728
+  ],
+  [
+    196.655957482,
+    74.0
+  ],
+  [
+    197.245449998,
+    64.75409836065575
+  ],
+  [
+    197.758956937,
+    62.5
+  ],
+  [
+    198.279749341,
+    62.37623762376238
+  ],
+  [
+    198.485477764,
+    92.85714285714286
+  ],
+  [
+    198.987191506,
+    88.88888888888889
+  ],
+  [
+    199.573598112,
+    83.05084745762713
+  ],
+  [
+    200.078982809,
+    60.57692307692308
+  ],
+  [
+    200.326112275,
+    49.01960784313726
+  ],
+  [
+    200.82960054,
+    85.14851485148515
+  ],
+  [
+    201.331411491,
+    93.06930693069307
+  ],
+  [
+    201.486208541,
+    68.9655172413793
+  ],
+  [
+    201.987924574,
+    78.64077669902913
+  ],
+  [
+    202.491370426,
+    91.17647058823529
+  ],
+  [
+    202.755413112,
+    90.19607843137254
+  ],
+  [
+    203.256430906,
+    94.05940594059406
+  ],
+  [
+    203.758040905,
+    95.0
+  ],
+  [
+    204.261010832,
+    86.0
+  ],
+  [
+    204.763241055,
+    51.42857142857143
+  ],
+  [
+    205.266588475,
+    4.0
+  ],
+  [
+    205.504320284,
+    29.166666666666657
+  ],
+  [
+    205.664949975,
+    60.60606060606061
+  ],
+  [
+    206.172723877,
+    69.90291262135922
+  ],
+  [
+    206.674966879,
+    86.0
+  ],
+  [
+    207.222061975,
+    75.89285714285714
+  ],
+  [
+    207.729411625,
+    67.34693877551021
+  ],
+  [
+    208.002962931,
+    8.771929824561411
+  ],
+  [
+    208.507712886,
+    9.090909090909093
+  ],
+  [
+    209.009414983,
+    7.692307692307693
+  ],
+  [
+    209.511183827,
+    5.940594059405953
+  ],
+  [
+    210.015147988,
+    7.070707070707073
+  ],
+  [
+    210.516983259,
+    3.960396039603964
+  ],
+  [
+    211.019980052,
+    7.0
+  ],
+  [
+    211.522642923,
+    15.384615384615387
+  ],
+  [
+    212.024113591,
+    15.841584158415841
+  ],
+  [
+    212.526414017,
+    5.940594059405953
+  ],
+  [
+    213.031916331,
+    20.0
+  ],
+  [
+    213.548437561,
+    49.056603773584904
+  ],
+  [
+    214.050888196,
+    28.28282828282829
+  ],
+  [
+    214.554305153,
+    10.89108910891089
+  ],
+  [
+    215.055641221,
+    6.185567010309285
+  ],
+  [
+    215.558361288,
+    1.9417475728155296
+  ],
+  [
+    216.061381916,
+    5.154639175257742
+  ],
+  [
+    216.563141425,
+    5.940594059405953
+  ],
+  [
+    217.064772753,
+    4.0404040404040416
+  ],
+  [
+    217.56690261,
+    20.388349514563103
+  ],
+  [
+    218.069969097,
+    49.01960784313726
+  ],
+  [
+    218.571285812,
+    17.64705882352942
+  ],
+  [
+    219.073111087,
+    2.9702970297029765
+  ],
+  [
+    219.575971005,
+    2.857142857142861
+  ],
+  [
+    220.078757195,
+    3.960396039603964
+  ]
+];
+// Position of the vertical axis.
+const X_LINE = 50;
+// General-use margin size.
+const MARGIN = 5;
+// Position of the horizontal axis, relative to the bottom.
+const Y_LINE = 35;
+// Minimum distance between time tick labels.
+const MIN_TICK_DIST = 50;
+// Radius for rounded rectangle corners.
+const RADIUS = 3;
+// Height of unit boxes.
+const BOX_HEIGHT = 25;
+// Distance between Y tick marks on the unit graph.
+const Y_TICK_DIST = BOX_HEIGHT + 2;
+// Rects used for mouseover detection.
+// Objects of {x, y, x2, y2, i} where `i` is the index into UNIT_DATA.
+let HIT_BOXES = [];
+// Index into UNIT_DATA of the last unit hovered over by mouse.
+let LAST_HOVER = null;
+// Key is unit index, value is {x, y, width, sections} of the box.
+let UNIT_COORDS = {};
+// Map of unit index to the index it was unlocked by.
+let REVERSE_UNIT_DEPS = {};
+let REVERSE_UNIT_RMETA_DEPS = {};
+let UNIT_BY_INDEX = {};
+
+const MIN_GRAPH_WIDTH = 200;
+const MAX_GRAPH_WIDTH = 4096;
+
+// How many pixels per second is added by each scale value
+const SCALE_PIXELS_PER_SEC = 8;
+
+function scale_to_graph_width(scale) {
+  // The scale corresponds to `SCALE_PIXELS_PER_SEC` pixels per seconds.
+  // We thus multiply it by that, and the total duration, to get the graph width.
+  const width = scale * SCALE_PIXELS_PER_SEC * DURATION;
+
+  // We then cap the size of the graph. It is hard to view if it is too large, and
+  // browsers may not render a large graph because it takes too much memory.
+  // 4096 is still ridiculously large, and probably won't render on mobile
+  // browsers, but should be ok for many desktop environments.
+  // Also use a minimum width of 200.
+  return Math.max(MIN_GRAPH_WIDTH, Math.min(MAX_GRAPH_WIDTH, width));
+}
+
+// This function performs the reverse of `scale_to_graph_width`.
+function width_to_graph_scale(width) {
+  const maxWidth = Math.min(MAX_GRAPH_WIDTH, width);
+  const minWidth = Math.max(MIN_GRAPH_WIDTH, width);
+
+  const trimmedWidth = Math.max(minWidth, Math.min(maxWidth, width));
+
+  const scale = Math.round(trimmedWidth / (DURATION * SCALE_PIXELS_PER_SEC));
+  return Math.max(1, scale);
+}
+
+// Init scale value and limits based on the client's window width and min/max graph width.
+const scaleElement = document.getElementById('scale');
+scaleElement.min = width_to_graph_scale(MIN_GRAPH_WIDTH);
+scaleElement.max = width_to_graph_scale(MAX_GRAPH_WIDTH);
+scaleElement.value = width_to_graph_scale(window.innerWidth * 0.75);
+
+// Colors from css
+const getCssColor = name => getComputedStyle(document.body).getPropertyValue(name);
+const TEXT_COLOR = getCssColor('--text');
+const BG_COLOR = getCssColor('--background');
+const CANVAS_BG = getCssColor('--canvas-background');
+const AXES_COLOR = getCssColor('--canvas-axes');
+const GRID_COLOR = getCssColor('--canvas-grid');
+const CODEGEN_COLOR = getCssColor('--canvas-codegen');
+const LINK_COLOR = getCssColor('--canvas-link');
+// Final leftover section after link
+const OTHER_COLOR = getCssColor('--canvas-other');
+const CUSTOM_BUILD_COLOR = getCssColor('--canvas-custom-build');
+const NOT_CUSTOM_BUILD_COLOR = getCssColor('--canvas-not-custom-build');
+const DEP_LINE_COLOR = getCssColor('--canvas-dep-line');
+const DEP_LINE_HIGHLIGHTED_COLOR = getCssColor('--canvas-dep-line-highlighted');
+const CPU_COLOR = getCssColor('--canvas-cpu');
+
+for (const unit of UNIT_DATA) {
+  UNIT_BY_INDEX[unit.i] = unit;
+  for (let unblocked of unit.unblocked_units) {
+    REVERSE_UNIT_DEPS[unblocked] = unit.i;
+  }
+  for (let unblocked of unit.unblocked_rmeta_units) {
+    REVERSE_UNIT_RMETA_DEPS[unblocked] = unit.i;
+  }
+}
+
+// Compute x,y coordinate of each block.
+// We also populate a map with the count of each unit name to disambiguate if necessary
+function compute_unit_coords(units, px_per_sec) {
+  const unitCount = new Map();
+  UNIT_COORDS = {};
+  for (i = 0; i < units.length; i++) {
+    let unit = units[i];
+    let y = i * Y_TICK_DIST + 1;
+    let x = px_per_sec * unit.start;
+
+    const sections = [];
+    if (unit.sections !== null) {
+      // We have access to compilation sections
+      for (const section of unit.sections) {
+        const [name, { start, end }] = section;
+        sections.push({
+          name,
+          start: x + px_per_sec * start,
+          width: (end - start) * px_per_sec
+        });
+      }
+    }
+
+    let width = Math.max(px_per_sec * unit.duration, 1.0);
+    UNIT_COORDS[unit.i] = { x, y, width, sections };
+
+    const count = unitCount.get(unit.name) || 0;
+    unitCount.set(unit.name, count + 1);
+  }
+
+  return { UNIT_COORDS, unitCount }
+}
+
+class SvgRenderer {
+  constructor() {}
+
+  render_pipeline_graph() {
+    if (UNIT_DATA.length == 0) {
+      return;
+    }
+    HIT_BOXES.length = 0;
+    const min_time = document.getElementById('min-unit-time').valueAsNumber;
+
+    const units = UNIT_DATA.filter(unit => unit.duration >= min_time);
+
+    const graph_height = Y_TICK_DIST * units.length;
+    let { canvas_height, canvas_width, graph_width, px_per_sec } = graph_dimension(graph_height);
+    const axes = this._draw_graph_axes({ canvas_height, graph_height, graph_width, px_per_sec });
+
+    // Draw Y tick marks.
+    let y_ticks = '';
+    if (units.length != 0) {
+      const path_commands = Array(units.length - 1)
+        .fill(0)
+        .map((_, idx) => {
+          const n = idx + 1;
+          const y = MARGIN + Y_TICK_DIST * n;
+          return `M${X_LINE} ${y} h-5`;
+        });
+      y_ticks = `<path class="axis axis-y" d="${path_commands.join(" ")}"></path>`;
+    }
+
+    // Draw Y labels.
+    const y_labels = Array(units.length)
+      .fill(0)
+      .map((_, n) => {
+          let y = MARGIN + Y_TICK_DIST * n + Y_TICK_DIST / 2;
+          return `<text class="axis axis-y" x="${X_LINE - 4}" y="${y}">${n + 1}</text>`;
+      })
+      .join("");
+
+    // Draw the graph.
+    const { UNIT_COORDS, unitCount } = compute_unit_coords(units, px_per_sec);
+    const presentSections = new Set();
+
+    // Draw the blocks.
+    let blocks = Array(units.length)
+      .fill(0)
+      .map((_, i) => {
+        let unit = units[i];
+        let { x, y, width, sections } = UNIT_COORDS[unit.i];
+
+        const boxes = [this._roundedRect("", x, y, width, unit)].concat(
+          sections.map((section) => {
+            presentSections.add(section.name);
+            return this._roundedRect(
+              section.name,
+              section.start,
+              y,
+              section.width,
+              unit,
+            );
+          }),
+        );
+
+        const labelName = (unitCount.get(unit.name) || 0) > 1 ? `${unit.name} (v${unit.version})${unit.target}` : `${unit.name}${unit.target}`;
+        const label = `${labelName}: ${unit.duration}s`;
+
+        const text_info_width = measure_text_width(label);
+        const label_x = Math.min(x + 5.0, canvas_width - text_info_width - X_LINE);
+        const box_label = `<text class="box" x="${label_x}" y="${y + BOX_HEIGHT / 2}">${label}</text>`;
+
+        const dep_lines = this._draw_dep_lines(unit.i);
+        return boxes.concat(box_label).concat(dep_lines);
+      })
+      .flat()
+      .join("");
+
+    blocks = `
+<g id="boxes" transform="translate(${X_LINE} ${MARGIN})">${blocks}</g>
+<g id="hl-dep-lines" transform="translate(${X_LINE} ${MARGIN})"></g>`;
+
+    // Draw a legend.
+    const legend = `
+<g class="legend" transform="translate(${canvas_width-200},${MARGIN})">
+  ${this._draw_legend(160, get_legend_entries(presentSections))}
+</g>`;
+
+    const svg_container = document.getElementById("pipeline-container");
+    if (svg_container) {
+      const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      svg.setAttribute("width", canvas_width);
+      svg.setAttribute("height", canvas_height);
+      Object.assign(svg.style, {
+        background: CANVAS_BG,
+        color: TEXT_COLOR,
+        fontFamily: 'sans-serif',
+        fontSize: '16px'
+      });
+      svg.innerHTML = `
+<style type="text/css">
+  path.axis {
+    fill: none;
+    stroke: ${AXES_COLOR};
+    stroke-width: 2;
+  }
+  text.axis {
+    fill: ${AXES_COLOR};
+    font-size: 16px;
+    stroke: none;
+    text-anchor: middle;
+  }
+  text.axis-y {
+    dominant-baseline: middle;
+    text-anchor: end;
+  }
+  .grid {
+    stroke: ${GRID_COLOR};
+    stroke-dasharray: 2 4;
+    stroke-width: 2;
+  }
+  rect.box {
+    fill: ${NOT_CUSTOM_BUILD_COLOR};
+    height: ${BOX_HEIGHT}px;
+    rx: ${RADIUS}px;
+    ry: ${RADIUS}px;
+  }
+  rect.box.run-custom-build {
+    fill: ${CUSTOM_BUILD_COLOR};
+  }
+  rect.box.codegen {
+    fill: ${CODEGEN_COLOR};
+  }
+  rect.box.link {
+    fill: ${LINK_COLOR};
+  }
+  rect.box.other {
+    fill: ${OTHER_COLOR}
+  }
+  text.box {
+    dominant-baseline: middle;
+    fill: ${TEXT_COLOR};
+    font-size: 14px;
+    text-anchor: start
+  }
+  .dep-line {
+    fill: none;
+    stroke: ${DEP_LINE_COLOR};
+    stroke-dasharray: 2;
+    stroke-width: 2;
+  }
+  #hl-dep-lines .dep-line{
+    stroke: ${DEP_LINE_HIGHLIGHTED_COLOR};
+  }
+  path.legend__cell {
+    stroke-width: 2;
+  }
+  .legend__desc {
+    fill: ${TEXT_COLOR};
+    dominant-baseline: middle;
+  }
+</style>
+${axes}
+${y_ticks}
+${y_labels}
+${blocks}
+${legend}`;
+      svg_container.innerHTML = svg.outerHTML;
+    }
+  }
+
+  // Draw a legend at the current position of the ctx.
+  // entries should be an array of objects with the following scheme:
+  // {
+  //   "name": <name of the legend entry> [string],
+  //   "color": <color of the legend entry> [string],
+  //   "line": <should the entry be a thin line or a rectangle> [bool]
+  // }
+  _draw_legend(width, entries) {
+    const entry_height = 20;
+
+    // Add a bit of margin to the bottom and top
+    const height = entries.length * entry_height + 4;
+
+    // Draw background
+    let legend = [];
+    legend.push(`<rect stroke="${TEXT_COLOR}" stroke-width="1" fill="${BG_COLOR}" width="${width}" height="${height}"></rect>`);
+
+    // Dimension of a block
+    const block_height = 15;
+    const block_width = 30;
+
+    // Margin from the left edge
+    const x_start = 5;
+    // Width of the "mark" section (line/block)
+    const mark_width = 45;
+
+    // Draw legend entries
+    let y = 12;
+    for (const entry of entries) {
+      const cell = entry.line ?
+        `<path class="legend__cell" stroke="${entry.color}" d="M${x_start} ${y} h ${mark_width}"></path>` :
+        `
+<rect class="legend__cell" fill="${entry.color}" width="${block_width}" height="${block_height}"
+  x="${x_start + (mark_width - block_width) / 2}" y="${y - (block_height / 2)}"
+></rect>`;
+      legend.push(cell);
+      legend.push(`<text class="legend__desc" x="${x_start + mark_width + 4}" y="${y + 1}">${entry.name}</text>`)
+      y += entry_height;
+    }
+    return legend.join("")
+  }
+
+  // Draws lines from the given unit to the units it unlocks.
+  _draw_dep_lines(unit_idx) {
+    const unit = UNIT_BY_INDEX[unit_idx];
+    const { x, y, sections } = UNIT_COORDS[unit_idx];
+    return unit.unblocked_units
+      .map((unblocked) => this._draw_one_dep_line(x, y, unblocked, unit_idx))
+      .concat(
+        unit.unblocked_rmeta_units.map((unblocked) => {
+          const codegen_x = get_codegen_section_x(sections);
+          return this._draw_one_dep_line(codegen_x, y, unblocked, unit_idx);
+        }),
+      )
+      .join("");
+  }
+
+  _draw_one_dep_line(from_x, from_y, to_unit, from_unit) {
+    if (to_unit in UNIT_COORDS) {
+      let { x: u_x, y: u_y } = UNIT_COORDS[to_unit];
+      // Use multiple path instead to avoid potential rendering issue while scrolling in Firefox.
+      return `
+<path class="dep-line" data-unblocked="${to_unit}" data-unblocked-by="${from_unit}" d="M ${from_x} ${from_y + BOX_HEIGHT / 2} h -5"></path>
+<path class="dep-line" data-unblocked="${to_unit}" data-unblocked-by="${from_unit}" d="M ${from_x - 5} ${from_y + BOX_HEIGHT / 2} V ${u_y + BOX_HEIGHT / 2}"></path>
+<path class="dep-line" data-unblocked="${to_unit}" data-unblocked-by="${from_unit}" d="M ${from_x - 5} ${u_y + BOX_HEIGHT / 2} H${u_x}"></path>
+`;
+    }
+  }
+
+  render_timing_graph() {
+    if (CONCURRENCY_DATA.length == 0) {
+      return;
+    }
+    const HEIGHT = 400;
+    const AXIS_HEIGHT = HEIGHT - MARGIN - Y_LINE;
+    const TOP_MARGIN = 10;
+    const GRAPH_HEIGHT = AXIS_HEIGHT - TOP_MARGIN;
+
+    let { canvas_height, canvas_width, graph_height, graph_width, px_per_sec } = graph_dimension(AXIS_HEIGHT);
+    const axis_bottom = this._draw_graph_axes({ canvas_height, graph_height, graph_width, px_per_sec });
+
+    // Draw Y tick marks and labels.
+    let max_v = 0;
+    for (let c of CONCURRENCY_DATA) {
+      max_v = Math.max(max_v, c.active, c.waiting, c.inactive);
+    }
+    const px_per_v = GRAPH_HEIGHT / max_v;
+    const { step, tick_dist, num_ticks } = split_ticks(max_v, px_per_v, GRAPH_HEIGHT);
+
+    const labels = [];
+    const ticks_path_commands = Array(num_ticks)
+      .fill(0)
+      .map((_, n) => {
+        const y = HEIGHT - Y_LINE - ((n + 1) * tick_dist);
+        labels.push( `<text class="axis axis-y" x="${X_LINE - 10}" y="${y}">${(n + 1) * step}</text>`);
+        return `M${X_LINE} ${y} h-5`;
+      })
+      .join(" ");
+    const ticks = `<path class="axis axis-y" d="${ticks_path_commands}"></path>`;
+    const ticks_labels = labels.join("");
+
+    // Label the Y axis.
+    let label_y = (HEIGHT - Y_LINE) / 2;
+
+    const y_axis_label = `<text class="axis axis-label" transform="translate(15, ${label_y}) rotate(270)"># Units</text>`
+    const axis_left = `${y_axis_label}${ticks}${ticks_labels}`;
+
+    // Draw the graph.
+
+    function coord(t, v) {
+      return {
+        x: graph_width * (t / DURATION),
+        y: TOP_MARGIN + GRAPH_HEIGHT * (1.0 - (v / max_v))
+      };
+    }
+
+    const cpuFillStyle = CPU_COLOR;
+    let cpu = "";
+    if (CPU_USAGE.length > 1) {
+      const bottomLeft = coord(CPU_USAGE[0][0], 0);
+      const bottomRight = coord(CPU_USAGE[CPU_USAGE.length - 1][0], 0);
+      const path_commands = [`M${bottomLeft.x} ${bottomLeft.y}`]
+      .concat(
+        Array(CPU_USAGE.length)
+          .fill(0)
+          .map((_, i) => {
+            let [time, usage] = CPU_USAGE[i];
+            let { x, y } = coord(time, (usage / 100.0) * max_v);
+            return `L${x} ${y}`;
+          }),
+      )
+      .concat(`L${bottomRight.x} ${bottomRight.y}`);
+      cpu = `<path stroke-width="0" fill="${cpuFillStyle}" d="${path_commands.join("")}"></path>`;
+    }
+
+    function draw_line(style, key) {
+      let first = CONCURRENCY_DATA[0];
+      let last = coord(first.t, key(first));
+      const path_commands = [];
+      path_commands.push(`M${last.x} ${last.y}`)
+      for (let i = 1; i < CONCURRENCY_DATA.length; i++) {
+        let c = CONCURRENCY_DATA[i];
+        let { x, y } = coord(c.t, key(c));
+        path_commands.push(`L${x} ${last.y} V${y}`);
+        last = { x, y };
+      }
+      return `<path class="status-line" stroke="${style}" d="${path_commands.join("")}"></path>`
+    }
+
+    const lines = [];
+    lines.push(draw_line('blue', function(c) { return c.inactive; }));
+    lines.push(draw_line('red', function(c) { return c.waiting; }));
+    lines.push(draw_line('green', function(c) { return c.active; }));
+
+    const timings = `<g class="graph-content" transform="translate(${X_LINE} ${MARGIN})">${cpu}${lines}</g>`;
+
+    // Draw a legend.
+    const legend = `
+<g class="legend" transform="translate(${canvas_width-200},${MARGIN})">
+${this._draw_legend(150, [{
+    name: "Waiting",
+    color: "red",
+    line: true
+  }, {
+    name: "Inactive",
+    color: "blue",
+    line: true
+  }, {
+    name: "Active",
+    color: "green",
+    line: true
+  }, {
+    name: "CPU Usage",
+    color: cpuFillStyle,
+    line: false
+}])}
+</g>`;
+
+    const svg_container = document.getElementById("timing-container");
+    if (svg_container) {
+      const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      svg.setAttribute("width", canvas_width);
+      svg.setAttribute("height", canvas_height);
+      Object.assign(svg.style, {
+        background: CANVAS_BG,
+        color: TEXT_COLOR,
+        fontFamily: 'sans-serif',
+        fontSize: '16px'
+      });
+      svg.innerHTML = `
+<style type="text/css">
+  path.axis {
+    fill: none;
+    stroke: ${AXES_COLOR};
+    stroke-width: 2;
+  }
+  text.axis {
+    fill: ${AXES_COLOR};
+    font-size: 16px;
+    stroke: none;
+    text-anchor: middle;
+  }
+  text.axis-y {
+    dominant-baseline: middle;
+    text-anchor: end;
+  }
+  .grid {
+    stroke: ${GRID_COLOR};
+    stroke-dasharray: 2 4;
+    stroke-width: 2;
+  }
+  .status-line {
+    fill: none;
+    stroke-width: 2;
+  }
+  path.legend__cell {
+    stroke-width: 2;
+  }
+  .legend__desc {
+    fill: ${TEXT_COLOR};
+    dominant-baseline: middle;
+  }
+</style>
+${axis_bottom}
+${axis_left}
+${timings}
+${legend}
+`;
+      svg_container.innerHTML = svg.outerHTML;
+    }
+  }
+
+  _draw_graph_axes({ canvas_height, graph_height, graph_width, px_per_sec }) {
+    // Draw main axes.
+    const main_axes = `
+<path class="axis" d="
+  M${X_LINE} ${MARGIN}
+  V${graph_height + MARGIN}
+  H${X_LINE + graph_width + 20}"
+></path>`;
+
+    // Draw X tick marks.
+    const { step, tick_dist, num_ticks } = split_ticks(DURATION, px_per_sec, graph_width);
+    const TICK_LENGTH = 5;
+    const grid_height = canvas_height - Y_LINE;
+    const labels = [];
+    const ticks_path_commands = Array(num_ticks)
+        .fill(0)
+        .map((_, n) => {
+          const x = X_LINE + ((n + 1) * tick_dist);
+          const label = `
+  <text class="axis" x="${x}" y="${grid_height + 20}">
+    ${(n + 1) * step}s
+  </text>`;
+          labels.push(label);
+          return `M${x} ${grid_height} v${TICK_LENGTH}`;
+        })
+        .join(" ");
+
+    const ticks = `<path class="axis"  d="${ticks_path_commands}"></path>`;
+    const ticks_labels = labels.join("")
+
+    // Draw vertical lines.
+    const vertical_lines = Array(num_ticks)
+      .fill(0)
+      .map((_, n) => {
+        const x = X_LINE + ((n + 1) * tick_dist);
+        return `<path class="grid" d="M${x} ${grid_height - 1} V${MARGIN}"></path>`;
+      })
+      .join("");
+    return `${main_axes}${ticks}${vertical_lines}${ticks_labels}`;
+  }
+
+  _roundedRect(section_name, x, y, width, unit) {
+    return `
+<rect class="box ${unit.mode} ${section_name}" data-i="${unit.i}" x="${x}" y="${y}" width="${width}"
+  onmousemove="hl(${unit.i})"
+>
+</rect>`
+  }
+}
+
+// Determine the width of text for svg.
+function measure_text_width(text) {
+  let ctx;
+  let canvas = measure_text_width.canvas;
+  if (!canvas) {
+    canvas = (measure_text_width.canvas = document.createElement("canvas"));
+  }
+  ctx = canvas.getContext("2d");
+  ctx.font = '14px sans-serif';
+  const text_info = ctx.measureText(text);
+  return text_info.width;
+}
+
+// Gets the x-coordinate of the codegen section of a unit.
+//
+// This is for drawing rmeta dependency lines.
+function get_codegen_section_x(sections) {
+    const codegen_section = sections.find(s => s.name === "codegen")
+    if (!codegen_section) {
+        // This happens only when type-checking (e.g., `cargo check`)
+        return null;
+    }
+    return codegen_section.start;
+}
+
+function get_legend_entries(presentSections) {
+    let frontend_name = "Frontend/rest";
+    if (presentSections.has("other")) {
+      frontend_name = "Frontend";
+    }
+
+    const legend_entries = [{
+      name: frontend_name,
+      color: NOT_CUSTOM_BUILD_COLOR,
+      line: false
+    }];
+    if (presentSections.has("codegen")) {
+      legend_entries.push({
+        name: "Codegen",
+        color: CODEGEN_COLOR,
+        line: false
+      });
+    }
+    if (presentSections.has("link")) {
+      legend_entries.push({
+        name: "Linking",
+        color: LINK_COLOR,
+        line: false
+      });
+    }
+    if (presentSections.has("other")) {
+      legend_entries.push({
+        name: "Other",
+        color: OTHER_COLOR,
+        line: false
+      });
+    }
+  return legend_entries
+}
+
+function graph_dimension(graph_height) {
+  const scale = document.getElementById('scale').valueAsNumber;
+  const graph_width = scale_to_graph_width(scale);
+  const px_per_sec = graph_width / DURATION;
+  const canvas_width = Math.max(graph_width + X_LINE + 30, X_LINE + 250);
+  const canvas_height = graph_height + MARGIN + Y_LINE;
+  return { canvas_height, canvas_width, graph_height, graph_width, px_per_sec, scale }
+}
+
+// Determine the spacing and number of ticks along an axis.
+function split_ticks(max_value, px_per_v, max_px) {
+  const max_ticks = Math.floor(max_px / MIN_TICK_DIST);
+  if (max_ticks <= 1) {
+    // Graph is too small for even 1 tick.
+    return {step: max_value, tick_dist: max_px, num_ticks: 1};
+  }
+  let step;
+  if (max_value <= max_ticks) {
+    step = 1;
+  } else if (max_value <= max_ticks * 2) {
+    step = 2;
+  } else if (max_value <= max_ticks * 4) {
+    step = 4;
+  } else if (max_value <= max_ticks * 5) {
+    step = 5;
+  } else {
+    step = 10;
+    let count = 0;
+    while (true) {
+      if (count > 100) {
+        throw Error("tick loop too long");
+      }
+      count += 1;
+      if (max_value <= max_ticks * step) {
+        break;
+      }
+      step += 10;
+    }
+  }
+  const tick_dist = px_per_v * step;
+  const num_ticks = Math.floor(max_value / step);
+  return {step, tick_dist, num_ticks};
+}
+
+function hl(i) {
+  // Highlight dependency lines on mouse hover.
+  if (i === undefined || i == LAST_HOVER) {
+    return
+  }
+  LAST_HOVER = i;
+  let g = document.getElementById("hl-dep-lines");
+
+  if (g) {
+    const selector = '#boxes .dep-line[data-unblocked="'+i+'"],#boxes .dep-line[data-unblocked-by="' + i + '"]';
+    const lines = Array.from(document.querySelectorAll(selector)).map(el => el.outerHTML);
+    g.innerHTML = lines.join("");
+  }
+}
+
+let renderer = new SvgRenderer();
+try {
+  renderer.render_pipeline_graph();
+  renderer.render_timing_graph();
+} catch (err) {
+  console.error(err);
+}
+
+// Set up and handle controls.
+{
+  const range = document.getElementById('min-unit-time');
+  const time_output = document.getElementById('min-unit-time-output');
+  time_output.innerHTML = `${range.value}s`;
+  range.oninput = event => {
+    time_output.innerHTML = `${range.value}s`;
+    try {
+      renderer.render_pipeline_graph();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const scale = document.getElementById('scale');
+  const scale_output = document.getElementById('scale-output');
+  scale_output.innerHTML = `${scale.value}`;
+  scale.oninput = event => {
+    scale_output.innerHTML = `${scale.value}`;
+    try {
+      renderer.render_pipeline_graph();
+      renderer.render_timing_graph();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  Array.from(document.querySelectorAll("input[name='renderer']")).forEach(function(el) {
+    el.addEventListener("change", function(event) {
+      renderer = setupRenderer(event.target.value);
+      try {
+        renderer.render_pipeline_graph();
+        renderer.render_timing_graph();
+      } catch (err) {
+        console.error(err);
+      }
+    });
+  });
+}
+
+</script>
+</body>
+</html>
