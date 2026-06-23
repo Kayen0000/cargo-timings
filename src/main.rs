@@ -1,8 +1,16 @@
+use std::ffi::OsString;
+
 use cargo_timings::{cli::output::print_summary, config::Config, error::print_err, parser::parse_timings};
 use clap::Parser;
 
 fn main() {
-    let config = Config::parse();
+    let mut args: Vec<OsString> = std::env::args_os().collect();
+
+    if args.len() > 1 && (args[1] == "timings" || args[1] == "cargo-timings") {
+        args.remove(1);
+    }
+
+    let config = Config::parse_from(args);
 
     let summary = match parse_timings(&config.path) {
         Ok(v) => v,

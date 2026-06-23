@@ -20,7 +20,7 @@ pub struct AppState {
     pub focus: FocusElement,
     pub should_quit: bool,
     pub timing_table_state: RefCell<TableState>,
-    pub sorted_timings:Option<Vec<Timing>>,
+    pub sorted_timings: Option<Vec<Timing>>,
 }
 
 impl AppState {
@@ -35,7 +35,7 @@ impl AppState {
             focus: FocusElement::TimingTable,
             should_quit: false,
             timing_table_state: RefCell::new(tstate),
-            sorted_timings:None,
+            sorted_timings: None,
         }
     }
     pub fn process_input(&mut self, input: Input) {

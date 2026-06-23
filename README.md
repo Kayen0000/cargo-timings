@@ -53,4 +53,10 @@ ratatui-core v0.1.2    21.9s
 ```
 
 ## Support
-You can support this project via [PayPal](https://paypal.me/dominikleszczynski0)
+
+You can support development of this project in two ways:
+
+* **Report bugs**: Found an issue? Report it on [Issue Tracker](https://github.com/Kayen0000/cargo-timings/issues).
+* **Donate**: Support ongoing maintenance via [PayPal](https://paypal.me/dominikleszczynski0).
+
+The Rust team may change `cargo-timing.html` at any time. Your support ensures this tool stays actively maintained and updated.

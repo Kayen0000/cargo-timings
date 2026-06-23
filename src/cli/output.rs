@@ -24,11 +24,6 @@ use crate::{
 pub fn print_summary(mut summary: Summary, config: &Config) -> io::Result<()> {
     let mut w = io::BufWriter::new(io::stdout().lock());
 
-    match config.order {
-        Order::Ascending => summary.timings.sort_by_key(|a| a.total),
-        Order::Descending => summary.timings.sort_by_key(|b| std::cmp::Reverse(b.total)),
-    }
-
     if let Some(sterm) = &config.search {
         summary.timings.retain(|t| t.unit.contains(sterm));
     }
@@ -36,6 +31,13 @@ pub fn print_summary(mut summary: Summary, config: &Config) -> io::Result<()> {
     if let Some(n) = config.top {
         summary.timings.truncate(n);
     }
+
+
+    match config.order {
+        Order::Ascending => summary.timings.sort_by_key(|a| a.total),
+        Order::Descending => summary.timings.sort_by_key(|b| std::cmp::Reverse(b.total)),
+    }
+
 
     let mut longest = (4, 5, 8, 7);
     for timing in &summary.timings {

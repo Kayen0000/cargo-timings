@@ -30,7 +30,7 @@ pub fn run_tui_loop(summary: parser::Summary, config: config::Config) -> anyhow:
             if state.should_quit {
                 break;
             }
-        state.sort_timings();
+            state.sort_timings();
         }
         term.draw(|frame| render(&state, frame))?;
     }
@@ -62,7 +62,8 @@ fn render(state: &AppState, frame: &mut Frame) {
 fn render_timing_details(state: &AppState, rect: Rect, frame: &mut Frame) {
     let tab_state = state.timing_table_state.borrow();
 
-    if let Some(timings) = &state.sorted_timings && let Some(selected) = tab_state.selected()
+    if let Some(timings) = &state.sorted_timings
+        && let Some(selected) = tab_state.selected()
         && let Some(timing) = timings.get(selected)
     {
         let block = Block::bordered().title(format!("{} details", timing.unit));
@@ -121,13 +122,13 @@ fn render_timings(state: &AppState, rect: Rect, frame: &mut Frame) {
     let head_row = Row::new(["UNIT", "TOTAL"]);
 
     let mut rows = Vec::new();
-    if let Some(timings) = &state.sorted_timings{
-    for timing in timings {
-        let unit = timing.unit.clone();
-        let total = fmt_dur(timing.total).clone();
-        let row = Row::new([unit, total]);
-        rows.push(row);
-    }
+    if let Some(timings) = &state.sorted_timings {
+        for timing in timings {
+            let unit = timing.unit.clone();
+            let total = fmt_dur(timing.total).clone();
+            let row = Row::new([unit, total]);
+            rows.push(row);
+        }
     }
     let widths = [Constraint::Max(longest_unit as u16), Constraint::Fill(1)];
 

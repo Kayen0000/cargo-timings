@@ -62,8 +62,8 @@ impl SingleLineBufferManager {
     pub fn len(&self) -> usize {
         self.buffer.grapheme_indices(true).count()
     }
-    
-    pub fn is_empty(&self) -> bool{
+
+    pub fn is_empty(&self) -> bool {
         self.buffer.is_empty()
     }
     fn get_idx(&self) -> usize {

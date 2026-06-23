@@ -16,11 +16,9 @@ pub enum Detail {
 }
 
 #[derive(Debug, Parser)]
-#[command(name = "cargo-timings", bin_name = "cargo")]
-#[command(author,about, version)]
+#[command(author, about, version)]
 pub struct Config {
-    #[arg(hide = true, value_parser = ["timings"])]
-    pub cargo_calle: Option<String>,
+
     #[arg(help = "path to timings", default_value = "./target/cargo-timings/cargo-timing.html")]
     pub path: PathBuf,
 
@@ -47,7 +45,7 @@ impl Order {
     pub fn next(self) -> Self {
         match self {
             Self::Ascending => Self::Descending,
-            Self::Descending =>Self::Ascending,
+            Self::Descending => Self::Ascending,
         }
     }
 
@@ -58,7 +56,7 @@ impl Order {
     pub fn prev(self) -> Self {
         match self {
             Self::Ascending => Self::Descending,
-         Self::Descending => Self::Ascending,
+            Self::Descending => Self::Ascending,
         }
     }
 
