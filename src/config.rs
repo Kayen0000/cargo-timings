@@ -18,11 +18,10 @@ pub enum Detail {
 #[derive(Debug, Parser)]
 #[command(author, about, version)]
 pub struct Config {
-
     #[arg(help = "path to timings", default_value = "./target/cargo-timings/cargo-timing.html")]
     pub path: PathBuf,
 
-    #[arg(short, long, help = "Show top dependencies acording to sorting order", value_name = "NUM")]
+    #[arg(short, long, help = "Show top results according to sorting order", value_name = "NUM")]
     pub top: Option<usize>,
 
     #[arg(short, long = "detail", help = "How much detail should summary show.")]
@@ -33,8 +32,18 @@ pub struct Config {
     #[arg(default_value = "descending", value_name = "ORDER")]
     pub order: Order,
 
-    #[arg(long, help = "Shows results matching search term", value_name = "TERM")]
-    pub search: Option<String>,
+    #[arg(short, long, help = "Shows results matching search term", value_name = "TERM")]
+    #[arg(default_value = "", hide_default_value = true)]
+    pub search: String,
+
+    #[arg(
+        short,
+        long,
+        help = "Shows results that took at least [SEC] seconds to compile",
+        value_name = "SEC",
+        default_value = "0.0"
+    )]
+    pub min_time: f32,
 
     #[cfg(feature = "tui")]
     #[arg(short, long, help = "Shows output in interactive tui")]
@@ -62,5 +71,12 @@ impl Order {
 
     pub fn toggle_prev(&mut self) {
         *self = self.prev();
+    }
+
+    pub fn to_str(&self) -> &str {
+        match self {
+            Self::Ascending => "Ascending",
+            Self::Descending => "Descending",
+        }
     }
 }

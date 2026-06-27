@@ -2,9 +2,10 @@ use io::Write;
 use std::io;
 
 use crate::{
-    config::{Config, Detail, Order},
+    config::{Config, Detail},
     formaters::fmt_dur,
     parser::Summary,
+    sorting::sort_timings,
 };
 
 /// EXPECTED OUTPUT
@@ -24,20 +25,7 @@ use crate::{
 pub fn print_summary(mut summary: Summary, config: &Config) -> io::Result<()> {
     let mut w = io::BufWriter::new(io::stdout().lock());
 
-    if let Some(sterm) = &config.search {
-        summary.timings.retain(|t| t.unit.contains(sterm));
-    }
-
-    if let Some(n) = config.top {
-        summary.timings.truncate(n);
-    }
-
-
-    match config.order {
-        Order::Ascending => summary.timings.sort_by_key(|a| a.total),
-        Order::Descending => summary.timings.sort_by_key(|b| std::cmp::Reverse(b.total)),
-    }
-
+    sort_timings(&mut summary.timings, config);
 
     let mut longest = (4, 5, 8, 7);
     for timing in &summary.timings {

@@ -168,12 +168,13 @@ checksum = "c8efb64bd706a16a1bdde310ae86b351e4d21550d98d056f22f8a7f7a2183fec"
 
 [[package]]
 name = "cargo-timings"
-version = "0.2.1"
+version = "0.2.2"
 dependencies = [
  "anyhow",
  "chrono",
  "clap",
  "crossterm",
+ "line-buffer",
  "ratatui",
  "scraper",
  "unicode-segmentation",
@@ -813,6 +814,15 @@ name = "libm"
 version = "0.2.16"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b6d2cec3eae94f9f509c767b45932f1ada8350c4bdb85af2fcab4a3c14807981"
+
+[[package]]
+name = "line-buffer"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "664aa97ce9df868dcb854cbde778c3da9f608e4889e2f1df5db19ff978353b26"
+dependencies = [
+ "unicode-segmentation",
+]
 
 [[package]]
 name = "line-clipping"

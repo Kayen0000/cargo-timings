@@ -1,13 +1,11 @@
-#[cfg(feature = "tui")]
 use ratatui::{
     Frame,
     layout::{Constraint, Layout, Rect},
     widgets::{Block, Row, Table},
 };
 use ratatui::{
-    layout,
     style::{Style, Stylize},
-    text::{Line, ToLine},
+    text::Line,
     widgets::Paragraph,
 };
 
@@ -40,23 +38,50 @@ pub fn run_tui_loop(summary: parser::Summary, config: config::Config) -> anyhow:
 }
 
 fn render(state: &AppState, frame: &mut Frame) {
-    let mut max_len = 10;
+    let mut max_len = 15;
     for t in &state.summary.timings {
-        if max_len < (t.unit.len() + fmt_dur(t.total).len()) {
-            max_len = t.unit.len() + fmt_dur(t.total).len();
+        let line_len = t.unit.len() + fmt_dur(t.total).len() + 5;
+        if max_len < line_len {
+            max_len = line_len;
         }
     }
 
-    let [up, down] = Layout::new(ratatui::layout::Direction::Vertical, [Constraint::Fill(1), Constraint::Fill(2)]).areas(frame.area());
-    let [down_left, down_right] = Layout::new(
-        ratatui::layout::Direction::Horizontal,
-        [Constraint::Min(max_len as u16 + 6), Constraint::Percentage(100)],
-    )
-    .areas(down);
+    let [left_side, right_side] = Layout::horizontal([Constraint::Max(max_len as u16), Constraint::Fill(1)]).areas(frame.area());
 
-    render_summary(state, up, frame);
-    render_timings(state, down_left, frame);
-    render_timing_details(state, down_right, frame);
+    let [timings_area, bot_area1] = Layout::vertical([Constraint::Fill(1), Constraint::Length(1)]).areas(left_side);
+
+    let [top_area, details_area, bot_area2] = Layout::vertical([Constraint::Length(11), Constraint::Fill(1), Constraint::Length(1)]).areas(right_side);
+    
+    let bot_area = bot_area1.union(bot_area2);
+    
+    match state.focus {
+        super::app_state::FocusElement::SearchInput => {
+            // 41 is a length of string in instructions
+            let x= bot_area.x + 41 + state.search_term.cursor_position() as u16;
+            let y = bot_area.y;
+            frame.set_cursor_position((x,y))
+        },
+        super::app_state::FocusElement::TimingTable => {}
+    }
+
+    render_timings(state, timings_area, frame);
+    render_instructions(state, bot_area, frame);
+    render_summary(state, top_area, frame);
+    render_timing_details(state, details_area, frame);
+}
+fn render_instructions(state: &AppState, rect: Rect, frame: &mut Frame) {
+    let status_line = match state.focus {
+        super::app_state::FocusElement::TimingTable => vec![
+            "Q: Quit".to_string(),
+            "▲/▼: Scroll".to_string(),
+            format!("S: Sort ({})", state.config.order.to_str()),
+            format!("F: Find ({})", state.search_term.as_str()),
+        ],
+        super::app_state::FocusElement::SearchInput => vec![format!("Type to filter... <ESC/Enter> to return: {}", state.search_term.as_str())],
+    };
+
+    let p = Paragraph::new(Line::from(status_line.join("  |  ")).dark_gray());
+    frame.render_widget(p, rect);
 }
 
 fn render_timing_details(state: &AppState, rect: Rect, frame: &mut Frame) {
@@ -80,8 +105,9 @@ fn render_timing_details(state: &AppState, rect: Rect, frame: &mut Frame) {
             .block(block);
         frame.render_widget(p, rect);
     } else {
-        let block = Block::bordered().title("Timing details");
-        frame.render_widget(block, rect);
+        let block = Block::bordered().title("Dependency details");
+        let placeholder = Paragraph::new("Use <UP/DOWN> arrows to inspect a dependency").dark_gray().centered();
+        frame.render_widget(placeholder.block(block), rect);
     }
 }
 
@@ -94,30 +120,7 @@ fn render_timings(state: &AppState, rect: Rect, frame: &mut Frame) {
         }
     }
 
-    let sort_string = format!(
-        "sort <s|S>: {} ",
-        match state.sort_order {
-            config::Order::Descending => "desc",
-            config::Order::Ascending => "asce",
-        }
-    );
-    let search_string = format!("find <f>: {:_<10}", state.search_term.peek());
-    let instructions = "scroll <up|down>, quit <q>";
-    let block = Block::bordered()
-        .title("TIMINGS")
-        .title_top(Line::from(sort_string).bold().alignment(layout::HorizontalAlignment::Right))
-        .title_bottom(search_string.to_line().bold().alignment(layout::HorizontalAlignment::Right))
-        .title_bottom(instructions.to_line().bold().alignment(layout::HorizontalAlignment::Left));
-
-    let inner = block.inner(rect);
-    let x_start = inner.x + inner.width.saturating_sub(10.max(state.search_term.len() as u16));
-    let x = inner.width.min(x_start + state.search_term.cursor as u16);
-    let y = inner.y + inner.height;
-
-    match state.focus {
-        super::app_state::FocusElement::SearchInput => frame.set_cursor_position((x, y)),
-        super::app_state::FocusElement::TimingTable => {}
-    }
+    let block = Block::bordered().title("TIMINGS");
 
     let head_row = Row::new(["UNIT", "TOTAL"]);
 
@@ -154,15 +157,15 @@ fn render_summary(state: &AppState, rect: Rect, frame: &mut Frame) {
     let rustc = state.summary.rustc.join(", ");
 
     let rows = [
-        Row::new(["TARGETS: ", &targets]),
-        Row::new(["PROFILE: ", &state.summary.profile]),
-        Row::new(["FRESH UNITS: ", &fresh]),
-        Row::new(["DIRTY UNITS: ", &dirty]),
-        Row::new(["TOTAL UNITS: ", &total]),
-        Row::new(["MAX CONCURRENCY: ", &concurrency]),
-        Row::new(["BUILD START: ", &build_start]),
-        Row::new(["TOTAL TIME: ", &total_time]),
-        Row::new(["RUSTC: ", &rustc]),
+        Row::new([Line::from("TARGETS:").dark_gray(), Line::from(targets).bold()]),
+        Row::new([Line::from("PROFILE:").dark_gray(), Line::from(state.summary.profile.as_str()).bold()]),
+        Row::new([Line::from("FRESH UNITS:").dark_gray(), Line::from(fresh).bold()]),
+        Row::new([Line::from("DIRTY UNITS:").dark_gray(), Line::from(dirty).bold()]),
+        Row::new([Line::from("TOTAL UNITS:").dark_gray(), Line::from(total).bold()]),
+        Row::new([Line::from("MAX CONCURRENCY:").dark_gray(), Line::from(concurrency).bold()]),
+        Row::new([Line::from("BUILD START:").dark_gray(), Line::from(build_start).bold()]),
+        Row::new([Line::from("TOTAL TIME:").dark_gray(), Line::from(total_time).bold()]),
+        Row::new([Line::from("RUSTC:").dark_gray(), Line::from(rustc).bold()]),
     ];
     let widths = [Constraint::Max(20), Constraint::Fill(1)];
 

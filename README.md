@@ -1,17 +1,19 @@
 # cargo-timings
 
-Terminal-based visualizer for `cargo-timing.html` files, built entirely in Rust.
+Terminal-based visualizer and dashboard for `cargo-timing.html` files, built entirely in Rust.
 
 [<img alt="crates.io" src="https://img.shields.io/crates/v/cargo-timings.svg?style=for-the-badge&color=fc8d61&logo=rust" height="20">](https://crates.io/crates/cargo-timings)
+
+![carg-timings Dashboard](assets/dashboard.png)
 
 ## Installation
 
 ```bash
-# Standard installation
+# Installs with the interactive TUI mode by default
 cargo install cargo-timings
 
-# With tui interactive mode
-cargo install cargo-timings --features tui
+# Minimal installation (CLI text output only)
+cargo install cargo-timings --no-default-features
 ```
 
 ## Usage
@@ -25,38 +27,25 @@ cargo build --timings
 Then, run the tool inside your project directory:
 
 ```bash
-# Automatically finds the standard target html path and lists bottlenecks
+# Automatically finds the standard target HTML path and lists bottlenecks
 cargo timings
 
-# Find matching dependencies
+# Filter and search for specific dependencies (e.g., isolate build scripts)
 cargo timings --search "build-script"
 
 # Get granular metrics including frontend and codegen stages
 cargo timings --detail extended
 cargo timings --detail full
 
-# View in interactive mode
+# Launch the interactive TUI dashboard
 cargo timings -i
-```
-
-Enjoy clean summary, without opening a browser:
-
-```bash
-TARGETS: ["cargo-timings 0.2.0 (lib)", "cargo-timings 0.2.0 ( cargo-timings \"bin\")"]
-TOTAL TIME: 215.1s
-UNIT.................. TOTAL
-clap_builder v4.6.0    50.9s
-scraper v0.27.0        31.7s
-syn v2.0.118           24.4s
-ratatui-widgets v0.3.2 22.4s
-ratatui-core v0.1.2    21.9s
 ```
 
 ## Support
 
 You can support development of this project in two ways:
 
-* **Report bugs**: Found an issue? Report it on [Issue Tracker](https://github.com/Kayen0000/cargo-timings/issues).
+* **Report bugs & Ideas**: Found an issue or want a feature? Report it on [Issue Tracker](https://github.com/Kayen0000/cargo-timings/issues).
 * **Donate**: Support ongoing maintenance via [PayPal](https://paypal.me/dominikleszczynski0).
 
-The Rust team may change `cargo-timing.html` at any time. Your support ensures this tool stays actively maintained and updated.
+Note: The upstream Rust/Cargo team may alter the structure of cargo-timing.html over time. Active reporting and support ensure this tool stays updated and maintained.
